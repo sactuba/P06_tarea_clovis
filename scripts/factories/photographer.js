@@ -12,8 +12,8 @@ function photographerFactory(photographer) {
         </a>
         <h2>${name}</h2>
         <span>${country}, ${city}</span>
-        <p>${tagline}</p>
-        <p>${price} €/jour</p>
+        <p class="tag">${tagline}</p>
+        <p class="price">${price} €/jour</p>
         </article>
 
         `
