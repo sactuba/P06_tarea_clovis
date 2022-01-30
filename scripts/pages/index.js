@@ -9,7 +9,7 @@
         return {}
     }
 
-    async function displayData(photographers) {
+    async function displayData() {
         const photographersSection = document.querySelector(".photographer_section");
         fetch('../../data/photographers.json')
         .then(res => res.json())

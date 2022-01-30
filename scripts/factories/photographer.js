@@ -20,4 +20,4 @@ function photographerFactory(photographer) {
         return (article);
     }
     return { name, picture,id, country, city, tagline, price, getUserCardDOM }
-}
+}  
