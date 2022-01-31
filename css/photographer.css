@@ -139,6 +139,16 @@ form textarea {
   resize: none;
 }
 
+.filterLabel {
+  font-family: DM Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
 select {
   margin-left: 100px;
   margin-top: 80px;
@@ -158,7 +168,9 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; /* Remove default arrow */
-  background-image: url(...); /* Add custom arrow */
+  background-image: url("../assets/icons/angle-up-solid.svg"); /* Add custom arrow */
+  background-position: right;
+  background-repeat: no-repeat;
 }
 
 .option {
@@ -170,4 +182,81 @@ select {
   letter-spacing: 0em;
   text-align: left;
   color: #fff;
+}
+
+/* Modal photo */
+
+.photoModalTag {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 4%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #fff;
+}
+
+.fa-times {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0 50px;
+}
+
+.modalContent {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  max-width: 60%;
+}
+
+.close {
+  color: #901c1c;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.photoModal {
+  display: flex;
+  justify-content: center;
+  max-width: 50%;
+  max-height: 600px;
+  margin: auto auto;
+}
+
+.photoContent {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.arrowRight {
+  color: #901c1c;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 5px;
+}
+
+.arrowLeft {
+  color: #901c1c;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  font-size: 5px;
+}
+
+.modalTitle {
+  color: #901c1c;
+  font-size: 24px;
+  position: absolute;
+  bottom: -35px;
+  left: 25%;
 }

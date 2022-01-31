@@ -7,8 +7,11 @@ async function photographerData() {
     let data = await response.json();
     
     const template = document.querySelector('.template');
+    const filterTag = document.querySelector('#filter');
+    const descHeader = document.querySelector('.descPhotographer');
+    const headerImage = document.querySelector('.imagePhotographer');
+    const bannerLikesAndPrice = document.querySelector('.bannerLikesAndPrice');
 
-    //console.log(headerDesc);
     //filtrer les données media par rapport a l'id des photographe
     const photographerDataFilter = data.photographers.filter(photographer => photographer.id == id)[0];
     const photographerMedias = data.media.filter(media => media.photographerId == photographerDataFilter.id);
@@ -17,7 +20,41 @@ async function photographerData() {
     const photographerName = photographerDataFilter.name;
     console.log(photographerName);
 
-    
+    //recuperer les values des option du select
+    filterTag.addEventListener("change", function() {
+        const value = filterTag.value;
+
+    //filtrer les photo par rapport au value du select
+        if(value == "date") {
+           photographerMedias.sort((a,b) => b.date > a.date);
+           photographerMedias.forEach(media => {
+            const name = photographerName;
+            const photographerCard =  factoryPatern(media, name);
+            //template.replaceAll(articles);
+            template.innerHTML += photographerCard;
+        })
+        } else if(value == "title") {
+           photographerMedias.sort((a,b) => a.title > b.title);
+           photographerMedias.forEach(media => {
+            const name = photographerName;
+            const photographerCard =  factoryPatern(media, name);
+            //template.replaceAll(articles);
+            template.innerHTML += photographerCard;
+        })
+           console.log(photographerMedias);
+        } else {
+            photographerMedias.sort((a,b) => b.likes > a.likes);
+            photographerMedias.forEach(media => {
+                const name = photographerName;
+                const photographerCard =  factoryPatern(media, name);
+               // template.replaceAll(articles);
+                template.innerHTML += photographerCard;
+            })
+            console.log(photographerMedias);
+        }
+        console.log(value);
+    })
+
     photographerMedias.forEach(media => {
         const name = photographerName;
         //console.log(name);
@@ -27,9 +64,9 @@ async function photographerData() {
         //console.log(photographerName);
     })
 
+
+
     //Header photographer Page Elements
-    const descHeader = document.querySelector('.descPhotographer');
-    const headerImage = document.querySelector('.imagePhotographer');
     const city = photographerDataFilter.city;
     const country = photographerDataFilter.country;
     const tagline = photographerDataFilter.tagline;
@@ -43,7 +80,6 @@ async function photographerData() {
 
     //Banner Total Likes and Price
     let totalLikes = 0;
-    const bannerLikesAndPrice = document.querySelector('.bannerLikesAndPrice');
     photographerMedias.forEach(media => {totalLikes += media.likes; /* console.log(totalLikes); */});
     const price = photographerDataFilter.price;
     bannerLikesAndPrice.innerHTML += `<span class="likes">${totalLikes} <i class="fas fa-heart"></i></span>`;
@@ -51,6 +87,23 @@ async function photographerData() {
     //console.log(totalLikes);
     //console.log(price);
 
+    let liketest = 0;
+    photographerMedias.forEach(media => {liketest = media.likes;  /* console.log(liketest); */});
+    const test1 = document.querySelectorAll('.likesCard');
+    //console.log(test1);
+    document.querySelectorAll('.heart').forEach(item => { 
+        item.addEventListener("click", function(){
+            console.log(item);
+            liketest ++;
+            //window.alert("hello");
+            return console.log(liketest);
+        })
+    })
+    
+  
+
+    //console.log(like);
+     
 
 }
 
@@ -87,7 +140,7 @@ function photographerPhotoCard(media, name) {
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <img src="${picture}"></img>
+        <img src="${picture}" onclick="openModalPhoto()"></img>
         </div>
         <span class="descPhotoCard">
         <p class="titleCard">${title}</p>
@@ -114,7 +167,7 @@ function photographerVideoCard(media, name) {
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <video src="${picture}"  type="video/mp4" controls></video>
+        <video src="${picture}" type="video/mp4" controls onclick="openModalPhoto()"></video>
         </div>
         <span class="descPhotoCard">
         <p class="titleCard">${title}</p>
@@ -129,28 +182,29 @@ function photographerVideoCard(media, name) {
     return { title, nameUrl, video, id, likes, displayVideoCard }
 }
 
-function headerPhotographer(photographer){
-        const { name, country, city, tagline, image} = photographer;
-        const picture = `../../Sample Photos/Photographers ID Photos/${name}`
-        
 
-        function displayPhotographerHeader(){
-           const desc = 
-            `
-            <article class="descInfo">
-            <p>${name}</p>
-            <p>${city}, ${country}</p>
-            <p>${tagline}</p>
-            </article>
-            `
 
-            const photo =
-            `
-            <img src="${picture}"></img>
-            `
-                
-            return desc, photo;
-        }
-        return { name, country, city, tagline, image, headerPhotographer} 
+function openModalPhoto() {
+document.querySelector('.photoModalTag').style.display = "block";
+document.querySelectorAll('.photoModalTag').innerHTML = `
+    <div class="modalContent">
+      <span class="close">
+        <i class="fas fa-times" onclick="closeModalPhoto()"></i>
+      </span>
+      <span class="arrowRight">
+        <i class="fas fa-angle-right"></i>
+      </span>
+      <span class="arrowLeft">
+        <i class="fas fa-angle-left"></i>
+      </span>
+      <div class="photoModal">
+        <img src="" alt="" class="photoContent">
+        <span class="modalTitle"></span>
+      </div>
+    </div>
+`
 }
 
+function closeModalPhoto() {
+    document.querySelectorAll('.photoModal').style.display = "none";
+}
