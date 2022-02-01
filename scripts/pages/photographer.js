@@ -26,44 +26,25 @@ async function photographerData() {
 
     //filtrer les photo par rapport au value du select
         if(value == "date") {
-           photographerMedias.sort((a,b) => b.date > a.date);
-           photographerMedias.forEach(media => {
-            const name = photographerName;
-            const photographerCard =  factoryPatern(media, name);
-            //template.replaceAll(articles);
-            template.innerHTML += photographerCard;
-        })
+           const media = photographerMedias.sort((a,b) => {
+               return new Date(a.date).valueOf() - new Date(b.date).valueOf();
+            });
+           displayCard(media, template)
         } else if(value == "title") {
-           photographerMedias.sort((a,b) => a.title > b.title);
-           photographerMedias.forEach(media => {
-            const name = photographerName;
-            const photographerCard =  factoryPatern(media, name);
-            //template.replaceAll(articles);
-            template.innerHTML += photographerCard;
-        })
-           console.log(photographerMedias);
+           const media = photographerMedias.sort((a,b) => {
+               if(a.title.toLowerCase() < b.title.toLowerCase()) {
+                   return -1;
+               } else if(a.title.toLowerCase() > b.title.toLowerCase()) {
+                   return 1;
+               }
+            });
+           displayCard(media, template)
         } else {
-            photographerMedias.sort((a,b) => b.likes > a.likes);
-            photographerMedias.forEach(media => {
-                const name = photographerName;
-                const photographerCard =  factoryPatern(media, name);
-               // template.replaceAll(articles);
-                template.innerHTML += photographerCard;
-            })
-            console.log(photographerMedias);
+            const media = photographerMedias.sort((a,b) => b.likes > a.likes);
+            displayCard(media, template)
         }
-        console.log(value);
     })
-
-    photographerMedias.forEach(media => {
-        const name = photographerName;
-        //console.log(name);
-        const photographerCard =  factoryPatern(media, name);
-        template.innerHTML += photographerCard;
-        //console.log(photographerCard);
-        //console.log(photographerName);
-    })
-
+    displayCard(photographerMedias, template);
 
 
     //Header photographer Page Elements
@@ -71,26 +52,23 @@ async function photographerData() {
     const country = photographerDataFilter.country;
     const tagline = photographerDataFilter.tagline;
     const image = photographerDataFilter.portrait;
-    const urlImage = `../../Sample Photos/Photographers ID Photos/${image}`;
+    const urlImage = `../../assets/images/Photographers ID Photos/${image}`;
     descHeader.innerHTML += `<p class="name">${photographerName}</p>`;
     descHeader.innerHTML += `<p class="cityCountry">${city}, ${country}</p>`
     descHeader.innerHTML += `<p class="tagline">${tagline}</p>`;
     headerImage.innerHTML = `<img src="${urlImage}"></img>`;
-    //console.log(city);
 
     //Banner Total Likes and Price
     let totalLikes = 0;
-    photographerMedias.forEach(media => {totalLikes += media.likes; /* console.log(totalLikes); */});
+    photographerMedias.forEach(media => {totalLikes += media.likes;});
     const price = photographerDataFilter.price;
     bannerLikesAndPrice.innerHTML += `<span class="likes">${totalLikes} <i class="fas fa-heart"></i></span>`;
     bannerLikesAndPrice.innerHTML += `<span class="priceBanner">${price}€/jour</span>`
-    //console.log(totalLikes);
-    //console.log(price);
+
 
     let liketest = 0;
-    photographerMedias.forEach(media => {liketest = media.likes;  /* console.log(liketest); */});
+    photographerMedias.forEach(media => {liketest = media.likes;});
     const test1 = document.querySelectorAll('.likesCard');
-    //console.log(test1);
     document.querySelectorAll('.heart').forEach(item => { 
         item.addEventListener("click", function(){
             console.log(item);
@@ -99,28 +77,28 @@ async function photographerData() {
             return console.log(liketest);
         })
     })
-    
-  
-
-    //console.log(like);
-     
-
 }
 
-/* function init(){
- return photographerData();
-}
 
-init(); */
 photographerData();
 
-function factoryPatern(media, name) {
+ 
+function displayCard(medias, template) {
+ template.innerHTML = ` `;
+ medias.forEach(media => {
+    const photographerCard = factoryPatern(media);
+    template.innerHTML += photographerCard;
+}); 
+}
+
+
+function factoryPatern(media) { 
     if(media.video == undefined) {
-      const template = photographerPhotoCard(media, name);
+      const template = photographerPhotoCard(media);
       const display = template.displayPhotoCard();
         return display;
     } else if(media.image == undefined) {
-      const template = photographerVideoCard(media, name);
+      const template = photographerVideoCard(media);
       const display = template.displayVideoCard();
         return display;
     } else {
@@ -130,10 +108,9 @@ function factoryPatern(media, name) {
 
 
 
-function photographerPhotoCard(media, name) {
+function photographerPhotoCard(media) {
     const { title, image, id, likes } = media;
-    const nameUrl = name;
-    const picture = `../../Sample Photos/${nameUrl}/${image}`;
+    const picture = `../../assets/images/medias/${image}`;
 
     function displayPhotoCard() {
 
@@ -152,15 +129,14 @@ function photographerPhotoCard(media, name) {
         `
         return (article);
     }
-    return { title, nameUrl, image, id, likes, displayPhotoCard }
+    return { title, image, id, likes, displayPhotoCard }
 }
 
 
-function photographerVideoCard(media, name) {
+function photographerVideoCard(media) {
     const { title,video, id, likes } = media;
-    const nameUrl = name;
 
-    const picture = `../../Sample Photos/${nameUrl}/${video}`;
+    const picture = `../../assets/images/medias/${video}`;
 
     function displayVideoCard() {
 
@@ -175,18 +151,21 @@ function photographerVideoCard(media, name) {
         <i class="fas fa-heart"></i></span></p>
         </span>
         </article>
-
         `
         return (article);
     }
-    return { title, nameUrl, video, id, likes, displayVideoCard }
+    return { title, video, id, likes, displayVideoCard }
 }
 
 
+function modalPhoto(media) {
+    const { image, title } = media;
 
-function openModalPhoto() {
-document.querySelector('.photoModalTag').style.display = "block";
-document.querySelector('.photoModalTag').innerHTML = `
+    const picture = `../../assets/images/medias/${image}`;
+
+    function displayModalPhoto() {
+
+    const modalVideo = document.querySelector('.photoModalTag').innerHTML = `
     <div class="modalContent">
       <span class="close">
         <i class="fas fa-times" onclick="closeModalPhoto()"></i>
@@ -198,13 +177,51 @@ document.querySelector('.photoModalTag').innerHTML = `
         <i class="fas fa-angle-left"></i>
       </span>
       <div class="photoModal">
-        <img src="../../Sample Photos/Ellie-Rose Wilkens/Architecture_Connected_Curves.jpg" alt="" class="photoContent">
-        <span class="modalTitle">test</span>
+        <img src="${picture}" alt="" class="photoContent">
+        <span class="modalTitle">${title}</span>
       </div>
     </div>
-`
+    `
+    return modalVideo;
+    }
+    return { image, title, displayModalPhoto }
+}
+
+
+function modalVideo(media) {
+    const { video, title } = media;
+
+    const picture = `../../assets/images/medias/${video}`;
+
+    function displayModalVideo() {
+
+    const modalPhoto = document.querySelector('.photoModalTag').innerHTML = `
+    <div class="modalContent">
+      <span class="close">
+        <i class="fas fa-times" onclick="closeModalPhoto()"></i>
+      </span>
+      <span class="arrowRight">
+        <i class="fas fa-angle-right"></i>
+      </span>
+      <span class="arrowLeft">
+        <i class="fas fa-angle-left"></i>
+      </span>
+      <div class="photoModal">
+        <img src="${picture}" alt="" class="photoContent">
+        <span class="modalTitle">${title}</span>
+      </div>
+    </div>
+    `
+    return modalPhoto;
+    }
+    return { video, title, displayModalVideo }
+}
+
+function openModalPhoto() {  
+      document.querySelector('.photoModalTag').style.display = "block";
+modalPhoto();
 }
 
 function closeModalPhoto() {
-    document.querySelectorAll('.photoModal').style.display = "none";
+    document.querySelector('.photoModalTag').style.display = "none";
 }
