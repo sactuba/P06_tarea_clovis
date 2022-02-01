@@ -186,7 +186,7 @@ function photographerVideoCard(media, name) {
 
 function openModalPhoto() {
 document.querySelector('.photoModalTag').style.display = "block";
-document.querySelectorAll('.photoModalTag').innerHTML = `
+document.querySelector('.photoModalTag').innerHTML = `
     <div class="modalContent">
       <span class="close">
         <i class="fas fa-times" onclick="closeModalPhoto()"></i>
@@ -198,8 +198,8 @@ document.querySelectorAll('.photoModalTag').innerHTML = `
         <i class="fas fa-angle-left"></i>
       </span>
       <div class="photoModal">
-        <img src="" alt="" class="photoContent">
-        <span class="modalTitle"></span>
+        <img src="../../Sample Photos/Ellie-Rose Wilkens/Architecture_Connected_Curves.jpg" alt="" class="photoContent">
+        <span class="modalTitle">test</span>
       </div>
     </div>
 `
