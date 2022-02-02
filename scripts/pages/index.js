@@ -8,9 +8,6 @@
                 const photographerModele =  photographerFactory(photographer);
                 const displayModele = photographerModele.getUserCardDOM();
                 photographersSection.innerHTML += displayModele;
-
-                //console.log(data);
-                console.log(photographerModele);
         });
     });
 

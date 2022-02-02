@@ -186,8 +186,9 @@ select {
 
 /* Modal photo */
 
-.photoModalTag {
+.photoCarrousel {
   display: none;
+  overflow: hidden;
   position: fixed;
   z-index: 1;
   padding-top: 4%;
