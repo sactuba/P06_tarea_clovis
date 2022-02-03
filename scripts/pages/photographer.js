@@ -238,7 +238,7 @@ function closeModalPhoto() {
 }
 
 function carrouselTest(media) {
-  const card = document.querySelectorAll('.photoModal');
+  const card = document.querySelector('.photoModal');
   const carrousel = document.querySelector('.photoCarrousel');
   const right = document.querySelector('.arrowRight');
   const left = document.querySelector('.arrowLeft');
@@ -248,8 +248,9 @@ function carrouselTest(media) {
   console.log(nbr);
 
   right.addEventListener("click", function() {
-    position++;
-    carrousel.style.transform = "translateY(600px)";
+ 
+    //carrousel.style.transform = "translateY(600px)";
+    card.style.transform = "translate(0,600px)";
   }) 
   
 }
