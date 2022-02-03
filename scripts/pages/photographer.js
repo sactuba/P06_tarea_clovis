@@ -69,7 +69,8 @@ async function photographerData() {
     incrementeLike(photographerMedias);
 
     displayCard(photographerMedias, template);
-    displayCarrousel(photographerMedias, carrousel)
+    displayCarrousel(photographerMedias, carrousel);
+    carrouselTest(photographerMedias);
 }
 
 
@@ -88,6 +89,7 @@ function incrementeLike(medias) {
   })
 }
  
+
 function displayCarrousel(medias, template) {
   template.innerHTML = ` `;
   medias.forEach(media => {
@@ -127,7 +129,6 @@ function factoryPatern(media) {
     } else if(media.image == undefined) {
       const template = photographerVideoCard(media);
       const display = template.displayVideoCard();
-
         return display;
     } else {
         throw "Unknow format";
@@ -153,7 +154,6 @@ function photographerPhotoCard(media ) {
         <i class="fas fa-heart"></i></span></p>
         </span>
         </article>
-
         `
         return (article);
     }
@@ -188,30 +188,18 @@ function photographerVideoCard(media) {
 
 function modalPhoto(media) {
     const { image, title } = media;
-
     const picture = `../../assets/images/medias/${image}`;
 
     function displayModalPhoto() {
     const template = document.querySelector('.photoCarrousel'); 
-    const modalVideo = `
-    <div class="modalContent">
-      <span class="close">
-        <i class="fas fa-times" onclick="closeModalPhoto()"></i>
-      </span>
-      <span class="arrowRight">
-        <i class="fas fa-angle-right"></i>
-      </span>
-      <span class="arrowLeft">
-        <i class="fas fa-angle-left"></i>
-      </span>
+    const modalPhoto = `
       <div class="photoModal">
         <img src="${picture}" alt="" class="photoContent">
         <span class="modalTitle">${title}</span>
       </div>
-    </div>
     `
-    template.innerHTML += modalVideo;
-    return modalVideo;
+    template.innerHTML += modalPhoto;
+    return modalPhoto;
     }
     return { image, title, displayModalPhoto }
 }
@@ -221,30 +209,20 @@ function modalVideo(media) {
     const { video, title } = media;
 
     const picture = `../../assets/images/medias/${video}`;
-
     function displayModalVideo() {
     const template = document.querySelector('.photoCarrousel'); 
 
-    const modalPhoto = `
-    <div class="modalContent">
-      <span class="close">
-        <i class="fas fa-times" onclick="closeModalPhoto()"></i>
-      </span>
-      <span class="arrowRight">
-        <i class="fas fa-angle-right"></i>
-      </span>
-      <span class="arrowLeft">
-        <i class="fas fa-angle-left"></i>
-      </span>
-      <div class="photoModal">
-        <img src="${picture}"" alt="" class="photoContent">
-        <span class="modalTitle">${title}"</span>
-      </div>
-    </div>
+    const modalVideo = `
+     
+       <div class="photoModal">
+         <video src="${picture}" type="video/mp4" controls alt="" class="photoContent">
+         <span class="modalTitle">${title}"</span>
+       </div>
+     
     `
-    template.innerHTML += modalPhoto;
+    template.innerHTML += modalVideo;
 
-    return modalPhoto;
+    return modalVideo;
     }
     return { video, title, displayModalVideo }
 }
@@ -252,10 +230,30 @@ function modalVideo(media) {
 
 
 function openModalPhoto() {  
-      document.querySelector('.photoCarrousel').style.display = "block";
-      modalPhoto();
+      document.querySelector('.modalCarrousel').style.display = "inline-grid";
 }
 
 function closeModalPhoto() {
-    document.querySelector('.photoCarrousel').style.display = "none";
+    document.querySelector('.modalCarrousel').style.display = "none";
 }
+
+function carrouselTest(media) {
+  const card = document.querySelectorAll('.photoModal');
+  const carrousel = document.querySelector('.photoCarrousel');
+  const right = document.querySelector('.arrowRight');
+  const left = document.querySelector('.arrowLeft');
+  const nbrL = media.length;
+  const nbr = media;
+  const position = 0;
+  console.log(nbr);
+
+  right.addEventListener("click", function() {
+    position++;
+    carrousel.style.transform = "translateY(600px)";
+  }) 
+  
+}
+
+
+
+
