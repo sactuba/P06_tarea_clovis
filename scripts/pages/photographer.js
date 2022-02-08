@@ -11,14 +11,15 @@ async function photographerData() {
     const descHeader = document.querySelector('.descPhotographer');
     const headerImage = document.querySelector('.imagePhotographer');
     const bannerLikesAndPrice = document.querySelector('.bannerLikesAndPrice');
-
+    const carrousel = document.querySelectorAll('photoCarrousel');
+  
     //filtrer les données media par rapport a l'id des photographe
     const photographerDataFilter = data.photographers.filter(photographer => photographer.id == id)[0];
     const photographerMedias = data.media.filter(media => media.photographerId == photographerDataFilter.id);
     //console.log(photographerMedias);
-    console.log(photographerDataFilter);
+    //console.log(photographerDataFilter);
     const photographerName = photographerDataFilter.name;
-    console.log(photographerName);
+    //console.log(photographerName);
 
     //recuperer les values des option du select
     filterTag.addEventListener("change", function() {
@@ -45,7 +46,6 @@ async function photographerData() {
         }
     })
 
-    const carrousel = document.querySelectorAll('photoCarrousel')
 
 
     //Header photographer Page Elements
@@ -55,7 +55,7 @@ async function photographerData() {
     const image = photographerDataFilter.portrait;
     const urlImage = `../../assets/images/Photographers ID Photos/${image}`;
     descHeader.innerHTML += `<p class="name">${photographerName}</p>`;
-    descHeader.innerHTML += `<p class="cityCountry">${city}, ${country}</p>`
+    descHeader.innerHTML += `<p class="cityCountry">${city}, ${country}</p>`;
     descHeader.innerHTML += `<p class="tagline">${tagline}</p>`;
     headerImage.innerHTML = `<img src="${urlImage}"></img>`;
 
@@ -64,197 +64,105 @@ async function photographerData() {
     photographerMedias.forEach(media => {totalLikes += media.likes;});
     const price = photographerDataFilter.price;
     bannerLikesAndPrice.innerHTML += `<span class="likes">${totalLikes} <i class="fas fa-heart"></i></span>`;
-    bannerLikesAndPrice.innerHTML += `<span class="priceBanner">${price}€/jour</span>`
-
-    incrementeLike(photographerMedias);
+    bannerLikesAndPrice.innerHTML += `<span class="priceBanner">${price}€/jour</span>`;
 
     displayCard(photographerMedias, template);
-    displayCarrousel(photographerMedias, carrousel);
-    carrouselTest(photographerMedias);
-}
+    
+    
+    let likeValue = 0;
+    photographerMedias.forEach(media => {likeValue = media.likes; console.log(likeValue);});
+    
+    incrementeLike(likeValue, photographerMedias);
+
+} 
 
 
 photographerData();
 
 
-function incrementeLike(medias) {
-  //const likeNumb = document.querySelectorAll('.likesCard');
-  //console.log(likeNumb);
-  medias.forEach(media => {liketest = media.likes;});
-  document.querySelectorAll('.heart').forEach(item => { 
-      item.addEventListener("click", function(){
-          liketest ++;
-          return console.log(liketest);
-      })
-  })
+
+function incrementeLike(like, test) {
+  console.log(test.likes);
+  like ++;
+  test.push(like);
+  return console.log(like);
+
 }
  
 
-function displayCarrousel(medias, template) {
-  template.innerHTML = ` `;
+/* function displayCarrousel(medias, template) {
   medias.forEach(media => {
-    const photographerCarrrousel = factoryPaternModal(media);
+    const photographerCarrrousel = MediaFactory.render(media);
     template.innerHTML += photographerCarrrousel;
 }); 
-}
+} */
 
 function displayCard(medias, template) {
   template.innerHTML = ` `;
   medias.forEach(media => {
-    const photographerCard = factoryPatern(media);
+    const photographerCard = MediaFactory.render(media);
     template.innerHTML += photographerCard;
 }); 
 }
   
-
-function factoryPaternModal(media) { 
-    if(media.video == undefined) {
-      const modalTemplate = modalPhoto(media);
-      const display = modalTemplate.displayModalPhoto();
+class ImageFactory {
+  static render(media){
+    const template = photographerPhotoCard(media);
+    const display = template.displayPhotoCard();
         return display;
-    } else if(media.image == undefined) {
-      const modalTemplate = modalVideo(media);
-      const display = modalTemplate.displayModalVideo();
-        return display;
-    } else {
-        throw "Unknow format";
-    }
+  }
 }
 
-function factoryPatern(media) { 
-    if(media.video == undefined) {
-      const template = photographerPhotoCard(media);
-      const display = template.displayPhotoCard();
-        return display;
-    } else if(media.image == undefined) {
-      const template = photographerVideoCard(media);
-      const display = template.displayVideoCard();
-        return display;
-    } else {
-        throw "Unknow format";
+class VideoFactory {
+  static render(media){
+    const template = photographerVideoCard(media);
+    const display = template.displayVideoCard();
+      return display; 
+  }
+} 
+
+class MediaFactory {
+  static render(media){
+    if(media.video == undefined) { 
+     return ImageFactory.render(media);
+    }  else {
+      return VideoFactory.render(media);
     }
+  }
 }
 
 
 
-function photographerPhotoCard(media ) {
-    const { title, image, id, likes } = media;
-    const picture = `../../assets/images/medias/${image}`;
-
-    function displayPhotoCard() {
-
-        const article =
-       `<article class="photoCard">
-        <div class="imageCard">
-        <img src="${picture}" onclick="openModalPhoto()"></img>
-        </div>
-        <span class="descPhotoCard">
-        <p class="titleCard">${title}</p>
-        <p class="likesCard">${likes}<span class="heart">
-        <i class="fas fa-heart"></i></span></p>
-        </span>
-        </article>
+function openModalPhoto(picture, title) {  
+        document.querySelector('.modalCarrousel').style.display = "inline-grid";
+        const template = document.querySelector('.photoCarrousel'); 
+        const modalPhoto = `
+          <div class="photoModal">
+            <img src="${picture}" alt="" class="photoContent">
+            <span class="modalTitle">${title}</span>
+          </div>
         `
-        return (article);
-    }
-    return { title, image, id, likes, displayPhotoCard }
-}
+        template.innerHTML += modalPhoto;
+        return modalPhoto; 
+        }
 
-
-function photographerVideoCard(media) {
-    const { title,video, id, likes } = media;
-
-    const picture = `../../assets/images/medias/${video}`;
-
-    function displayVideoCard() {
-
-        const article =
-       `<article class="photoCard">
-        <div class="imageCard">
-        <video src="${picture}" type="video/mp4" controls onclick="openModalPhoto()"></video>
-        </div>
-        <span class="descPhotoCard">
-        <p class="titleCard">${title}</p>
-        <p class="likesCard">${likes}<span class="heart">
-        <i class="fas fa-heart"></i></span></p>
-        </span>
-        </article>
-        `
-        return (article);
-    }
-    return { title, video, id, likes, displayVideoCard }
-}
-
-
-function modalPhoto(media) {
-    const { image, title } = media;
-    const picture = `../../assets/images/medias/${image}`;
-
-    function displayModalPhoto() {
-    const template = document.querySelector('.photoCarrousel'); 
-    const modalPhoto = `
-      <div class="photoModal">
-        <img src="${picture}" alt="" class="photoContent">
-        <span class="modalTitle">${title}</span>
-      </div>
-    `
-    template.innerHTML += modalPhoto;
-    return modalPhoto;
-    }
-    return { image, title, displayModalPhoto }
-}
-
-
-function modalVideo(media) {
-    const { video, title } = media;
-
-    const picture = `../../assets/images/medias/${video}`;
-    function displayModalVideo() {
-    const template = document.querySelector('.photoCarrousel'); 
-
-    const modalVideo = `
-     
-       <div class="photoModal">
-         <video src="${picture}" type="video/mp4" controls alt="" class="photoContent">
-         <span class="modalTitle">${title}"</span>
-       </div>
-     
-    `
-    template.innerHTML += modalVideo;
-
-    return modalVideo;
-    }
-    return { video, title, displayModalVideo }
-}
-
-
-
-function openModalPhoto() {  
-      document.querySelector('.modalCarrousel').style.display = "inline-grid";
-}
 
 function closeModalPhoto() {
-    document.querySelector('.modalCarrousel').style.display = "none";
+      document.querySelector('.modalCarrousel').style.display = "none";
 }
 
-function carrouselTest(media) {
-  const card = document.querySelector('.photoModal');
+/* function carrouselTest(media) {
   const carrousel = document.querySelector('.photoCarrousel');
   const right = document.querySelector('.arrowRight');
   const left = document.querySelector('.arrowLeft');
   const nbrL = media.length;
   const nbr = media;
-  const position = 0;
-  console.log(nbr);
-
-  right.addEventListener("click", function() {
-      card.style.transform = "translate(0,-500px)";
-  }) 
-  left.addEventListener("click", function() {
-      card.style.transform = "translate(0,500px)";
-  }) 
-  
+  console.log();
+  let i = 0;
+  for(let i = 0; i <= nbrL; i++){
+    console.log(nbr[i].image);
 }
+}  */
 
 
 

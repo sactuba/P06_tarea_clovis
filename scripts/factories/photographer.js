@@ -1,23 +1,68 @@
-function photographerFactory(photographer) {
-    const { name, portrait, id, country, city, tagline, price } = photographer;
+function photographerPhotoCard(media ) {
+    const { title, image, id, likes } = media;
+    const picture = `assets/images/medias/${image}`;
 
-    const picture = `Sample Photos/Photographers ID Photos/${portrait}`;
-
-    function getUserCardDOM() {
+    function displayPhotoCard() {
 
         const article =
-        `<article>
-        <a href="/photographer.html?id=${id}">
-        <img src="${picture}"></img>
-        </a>
-        <h2>${name}</h2>
-        <span>${country}, ${city}</span>
-        <p class="tag">${tagline}</p>
-        <p class="price">${price} €/jour</p>
+       `<article class="photoCard">
+        <div class="imageCard">
+        <img src="${picture}" onclick="openModalPhoto()"></img>
+        </div>
+        <span class="descPhotoCard">
+        <p class="titleCard">${title}</p>
+        <p class="likesCard">
+        <span class="like">${likes}</span>
+        <span class="heart" onclick="incrementeLike(${likes})">
+        <i class="fas fa-heart"></i></span>
+        </p>
+        </span>
         </article>
-
         `
         return (article);
     }
-    return { name, picture,id, country, city, tagline, price, getUserCardDOM }
-}  
+    return { title, image, id, likes, displayPhotoCard }
+}
+
+
+function photographerVideoCard(media) {
+    const { title,video, id, likes } = media;
+
+    const picture = `assets/images/medias/${video}`;
+
+    function displayVideoCard() {
+
+        const article =
+       `<article class="photoCard">
+        <div class="imageCard">
+        <video src="${picture}" type="video/mp4" controls onclick="openModalPhoto()"></video>
+        </div>
+        <span class="descPhotoCard"> 
+        <p class="titleCard">${title}</p>
+        <p class="likesCard">
+        <span class="price">${likes}</span>
+        <span class="heart" onclick="incrementeLike(${likes})>
+        <i class="fas fa-heart"></i></span>
+        </p>
+        </span>
+        </article>
+        `
+        return (article);
+    }
+    return { title, video, id, likes, displayVideoCard }
+}
+
+
+
+
+ 
+/* function modalCarousel(picture, title) {
+    //const { image, title } = media;
+    //const picture = `../../assets/images/medias/${image}`; */
+
+
+/*     return { picture, title, displayModalPhoto }
+}
+ */
+
+
