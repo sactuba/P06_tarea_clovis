@@ -70,9 +70,30 @@ async function photographerData() {
     
     
     let likeValue = 0;
-    photographerMedias.forEach(media => {likeValue = media.likes; console.log(likeValue);});
+    const likeVal = document.querySelector('.like');
+    const heart = document.querySelectorAll('.heart');
     
-    incrementeLike(likeValue, photographerMedias);
+    photographerMedias.forEach(media => {likeValue = media.likes;})
+    const likeTest = likeValue;
+    console.log(likeTest);
+    heart.forEach(elt => {
+      elt.addEventListener("click", () => {
+          console.log(likeValue);
+          likeValue ++;
+          likeVal.innerText = likeValue;
+          console.log(likeValue);
+        })
+  });
+
+  const test = document.querySelector('.heart');
+/*   test.addEventListener("click", () => {
+    console.log(likeValue);
+    likeValue ++;
+    likeVal.innerText = likeValue;
+    console.log(likeValue);
+      //console.log(elt);
+    }); */
+
 
 } 
 
@@ -80,22 +101,15 @@ async function photographerData() {
 photographerData();
 
 
-
-function incrementeLike(like, test) {
-  console.log(test.likes);
+/* 
+function incrementeLike(like) {
+  console.log(like);
   like ++;
-  test.push(like);
-  return console.log(like);
-
-}
+  console.log(like);
+} */
  
 
-/* function displayCarrousel(medias, template) {
-  medias.forEach(media => {
-    const photographerCarrrousel = MediaFactory.render(media);
-    template.innerHTML += photographerCarrrousel;
-}); 
-} */
+
 
 function displayCard(medias, template) {
   template.innerHTML = ` `;

@@ -13,7 +13,7 @@ function photographerPhotoCard(media ) {
         <p class="titleCard">${title}</p>
         <p class="likesCard">
         <span class="like">${likes}</span>
-        <span class="heart" onclick="incrementeLike(${likes})">
+        <span class="heart">
         <i class="fas fa-heart"></i></span>
         </p>
         </span>
@@ -40,8 +40,8 @@ function photographerVideoCard(media) {
         <span class="descPhotoCard"> 
         <p class="titleCard">${title}</p>
         <p class="likesCard">
-        <span class="price">${likes}</span>
-        <span class="heart" onclick="incrementeLike(${likes})>
+        <span class="like">${likes}</span>
+        <span class="heart">
         <i class="fas fa-heart"></i></span>
         </p>
         </span>
