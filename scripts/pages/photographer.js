@@ -16,10 +16,7 @@ async function photographerData() {
     //filtrer les données media par rapport a l'id des photographe
     const photographerDataFilter = data.photographers.filter(photographer => photographer.id == id)[0];
     const photographerMedias = data.media.filter(media => media.photographerId == photographerDataFilter.id);
-    //console.log(photographerMedias);
-    //console.log(photographerDataFilter);
     const photographerName = photographerDataFilter.name;
-    //console.log(photographerName);
 
     //recuperer les values des option du select
     filterTag.addEventListener("change", function() {
@@ -72,13 +69,21 @@ async function photographerData() {
     let likeValue = 0;
     const likeVal = document.querySelector('.like');
     const heart = document.querySelectorAll('.heart');
+    console.log(heart.length);
+
+
     
-    photographerMedias.forEach(media => {likeValue = media.likes;})
+    photographerMedias.forEach(media => {
+      likeValue = media.likes;
+    })
+    //console.log(likeValue);
+    
     const likeTest = likeValue;
-    console.log(likeTest);
+    //console.log(likeTest);
     heart.forEach(elt => {
+      //for(let i = 0; 0 <= heart.length; i++) {}
       elt.addEventListener("click", () => {
-          console.log(likeValue);
+          //console.log(likeValue);
           likeValue ++;
           likeVal.innerText = likeValue;
           console.log(likeValue);
@@ -101,11 +106,12 @@ async function photographerData() {
 photographerData();
 
 
-/* 
-function incrementeLike(like) {
+
+/* function incrementeLike(like, template) {
   console.log(like);
   like ++;
-  console.log(like);
+  template.innerText = like;
+  console.log(like);;
 } */
  
 
@@ -148,7 +154,9 @@ class MediaFactory {
 
 
 function openModalPhoto(picture, title) {  
+
         document.querySelector('.modalCarrousel').style.display = "inline-grid";
+
         const template = document.querySelector('.photoCarrousel'); 
         const modalPhoto = `
           <div class="photoModal">
@@ -156,7 +164,7 @@ function openModalPhoto(picture, title) {
             <span class="modalTitle">${title}</span>
           </div>
         `
-        template.innerHTML += modalPhoto;
+        template.innerHTML = modalPhoto;
         return modalPhoto; 
         }
 
@@ -165,19 +173,13 @@ function closeModalPhoto() {
       document.querySelector('.modalCarrousel').style.display = "none";
 }
 
-/* function carrouselTest(media) {
+function carrousel() {
   const carrousel = document.querySelector('.photoCarrousel');
   const right = document.querySelector('.arrowRight');
   const left = document.querySelector('.arrowLeft');
-  const nbrL = media.length;
-  const nbr = media;
-  console.log();
-  let i = 0;
-  for(let i = 0; i <= nbrL; i++){
-    console.log(nbr[i].image);
-}
-}  */
+  
 
+}
 
 
 

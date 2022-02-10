@@ -7,7 +7,7 @@ function photographerPhotoCard(media ) {
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <img src="${picture}" onclick="openModalPhoto()"></img>
+        <img src="${picture}" onclick="openModalPhoto('${picture}', '${title}')"></img>
         </div>
         <span class="descPhotoCard">
         <p class="titleCard">${title}</p>
@@ -35,7 +35,7 @@ function photographerVideoCard(media) {
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <video src="${picture}" type="video/mp4" controls onclick="openModalPhoto()"></video>
+        <video src="${picture}" type="video/mp4" controls onclick="openModalPhoto('${picture}', '${title}')"></video>
         </div>
         <span class="descPhotoCard"> 
         <p class="titleCard">${title}</p>
