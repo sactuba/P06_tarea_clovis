@@ -69,24 +69,30 @@ async function photographerData() {
     let likeValue = 0;
     const likeVal = document.querySelector('.like');
     const heart = document.querySelectorAll('.heart');
-    console.log(heart.length);
+    //console.log(heart.length);
 
 
 
     photographerMedias.forEach(media => {
       likeValue = media.likes;
+      for(let i = 0; i >= likeValue.length; i++){
+        likeValue[i];
+        console.log(likeValue[3]);
+      }
     })
+
+    //inc(likeValue);
     //console.log(likeValue);
     
     //console.log(likeTest);
-/*     heart.forEach(elt => {
+    heart.forEach(elt => {
       elt.addEventListener("click", () => {
           //console.log(likeValue);
           likeValue ++;
           likeVal.innerText = likeValue;
           console.log(likeValue);
         })
-  }); */
+  });
 
   /*const test = document.querySelector('.heart');
    test.addEventListener("click", () => {
@@ -114,11 +120,11 @@ photographerData();
 } */
  
 
-function inc(like){
+/* function inc(like){
   like ++;
   parent.innerText = like;
   console.log(like);
-}
+} */
 
 function displayCard(medias, template) {
   template.innerHTML = ` `;
@@ -180,6 +186,9 @@ function closeModalPhoto() {
 function carrousel(media) {
   const right = document.querySelector('.arrowRight');
   const left = document.querySelector('.arrowLeft');
+  for(let i=0 ; i <= media  ; i++){
+
+  }
   
 }
 
