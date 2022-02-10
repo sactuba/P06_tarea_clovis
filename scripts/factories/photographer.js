@@ -13,7 +13,7 @@ function photographerPhotoCard(media ) {
         <p class="titleCard">${title}</p>
         <p class="likesCard">
         <span class="like">${likes}</span>
-        <span class="heart">
+        <span class="heart" onclick="inc('${likes}')">
         <i class="fas fa-heart"></i></span>
         </p>
         </span>
@@ -41,7 +41,7 @@ function photographerVideoCard(media) {
         <p class="titleCard">${title}</p>
         <p class="likesCard">
         <span class="like">${likes}</span>
-        <span class="heart">
+        <span class="heart" onclick="inc('${likes}')">
         <i class="fas fa-heart"></i></span>
         </p>
         </span>

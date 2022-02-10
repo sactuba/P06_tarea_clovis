@@ -72,32 +72,31 @@ async function photographerData() {
     console.log(heart.length);
 
 
-    
+
     photographerMedias.forEach(media => {
       likeValue = media.likes;
     })
     //console.log(likeValue);
     
-    const likeTest = likeValue;
     //console.log(likeTest);
-    heart.forEach(elt => {
-      //for(let i = 0; 0 <= heart.length; i++) {}
+/*     heart.forEach(elt => {
       elt.addEventListener("click", () => {
           //console.log(likeValue);
           likeValue ++;
           likeVal.innerText = likeValue;
           console.log(likeValue);
         })
-  });
+  }); */
 
-  const test = document.querySelector('.heart');
-/*   test.addEventListener("click", () => {
+  /*const test = document.querySelector('.heart');
+   test.addEventListener("click", () => {
     console.log(likeValue);
     likeValue ++;
     likeVal.innerText = likeValue;
     console.log(likeValue);
       //console.log(elt);
     }); */
+
 
 
 } 
@@ -115,7 +114,11 @@ photographerData();
 } */
  
 
-
+function inc(like){
+  like ++;
+  parent.innerText = like;
+  console.log(like);
+}
 
 function displayCard(medias, template) {
   template.innerHTML = ` `;
@@ -157,6 +160,7 @@ function openModalPhoto(picture, title) {
 
         document.querySelector('.modalCarrousel').style.display = "inline-grid";
 
+    
         const template = document.querySelector('.photoCarrousel'); 
         const modalPhoto = `
           <div class="photoModal">
@@ -166,20 +170,19 @@ function openModalPhoto(picture, title) {
         `
         template.innerHTML = modalPhoto;
         return modalPhoto; 
-        }
+}
 
 
 function closeModalPhoto() {
       document.querySelector('.modalCarrousel').style.display = "none";
 }
 
-function carrousel() {
-  const carrousel = document.querySelector('.photoCarrousel');
+function carrousel(media) {
   const right = document.querySelector('.arrowRight');
   const left = document.querySelector('.arrowLeft');
   
-
 }
+
 
 
 
