@@ -67,64 +67,45 @@ async function photographerData() {
     
     
     let likeValue = 0;
-    const likeVal = document.querySelector('.like');
     const heart = document.querySelectorAll('.heart');
-    //console.log(heart.length);
-
-
 
     photographerMedias.forEach(media => {
       likeValue = media.likes;
       for(let i = 0; i >= likeValue.length; i++){
         likeValue[i];
-        console.log(likeValue[3]);
+        console.log(likeValue[i]);
       }
-    })
+    }) 
 
-    //inc(likeValue);
-    //console.log(likeValue);
-    
-    //console.log(likeTest);
     heart.forEach(elt => {
       elt.addEventListener("click", () => {
-          //console.log(likeValue);
-          likeValue ++;
-          likeVal.innerText = likeValue;
-          console.log(likeValue);
+          const parent= elt.parentNode;
+          const likeView = parent.childNodes;
+          let testo = likeView[1].textContent;
+          const testo1 = parseInt(testo ++);
+          console.log(testo);
+          console.log(testo1);
+          //likeValue ++; 
+          likeView[1].innerText = testo1; 
+          totalLikes ++;
+          //const ttL à document. 
+          //console.log(testo1);
         })
   });
-
-  /*const test = document.querySelector('.heart');
-   test.addEventListener("click", () => {
-    console.log(likeValue);
-    likeValue ++;
-    likeVal.innerText = likeValue;
-    console.log(likeValue);
-      //console.log(elt);
-    }); */
-
-
 
 } 
 
 
 photographerData();
 
-
-
-/* function incrementeLike(like, template) {
-  console.log(like);
-  like ++;
-  template.innerText = like;
-  console.log(like);;
-} */
- 
-
-/* function inc(like){
-  like ++;
-  parent.innerText = like;
+/* function Inc(like) {
+  const parent= elt.parentNode;
+  const likeVal = parent.childNodes;
+  like ++; 
+  likeVal[1].innerText = like;  
   console.log(like);
 } */
+
 
 function displayCard(medias, template) {
   template.innerHTML = ` `;
@@ -187,11 +168,12 @@ function carrousel(media) {
   const right = document.querySelector('.arrowRight');
   const left = document.querySelector('.arrowLeft');
   for(let i=0 ; i <= media  ; i++){
-
-  }
-  
+     modalPhoto[i];
+     console.log(modalPhoto[i]);
+    }
+   
 }
 
 
-
+carrousel();
 
