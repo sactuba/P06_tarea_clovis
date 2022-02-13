@@ -60,7 +60,7 @@ async function photographerData() {
     let totalLikes = 0;
     photographerMedias.forEach(media => {totalLikes += media.likes;});
     const price = photographerDataFilter.price;
-    bannerLikesAndPrice.innerHTML += `<span class="likes">${totalLikes} <i class="fas fa-heart"></i></span>`;
+    bannerLikesAndPrice.innerHTML += `<span class="likes"><span class="likeValue">${totalLikes}</span><i class="fas fa-heart"></i></span>`;
     bannerLikesAndPrice.innerHTML += `<span class="priceBanner">${price}€/jour</span>`;
 
     displayCard(photographerMedias, template);
@@ -68,43 +68,48 @@ async function photographerData() {
     
     let likeValue = 0;
     const heart = document.querySelectorAll('.heart');
+    const allLikes = document.querySelector('.likeValue');
+    console.log(allLikes);
 
     photographerMedias.forEach(media => {
       likeValue = media.likes;
-      for(let i = 0; i >= likeValue.length; i++){
+      //console.log(likeValue);
+      /* for(let i = 0; i >= likeValue.length; i++){
         likeValue[i];
         console.log(likeValue[i]);
-      }
+      } */
     }) 
 
     heart.forEach(elt => {
       elt.addEventListener("click", () => {
           const parent= elt.parentNode;
           const likeView = parent.childNodes;
-          let testo = likeView[1].textContent;
-          const testo1 = parseInt(testo ++);
-          console.log(testo);
-          console.log(testo1);
-          //likeValue ++; 
-          likeView[1].innerText = testo1; 
+        /*let test1 = likeView[1].textContent;
+          const test2 = parseInt(test1);
+          console.log(test1);
+          console.log(test2); */
+          likeValue ++; 
+          likeView[1].innerText = likeValue; 
           totalLikes ++;
-          //const ttL à document. 
+          allLikes.innerText = totalLikes;
           //console.log(testo1);
         })
   });
 
+photographerMedias.forEach(media => {
+         medias = media.image ? media.image : media.video;
+         //console.log(medias);
+         console.log(medias.indexOf(media));
+})
 } 
-
 
 photographerData();
 
-/* function Inc(like) {
-  const parent= elt.parentNode;
-  const likeVal = parent.childNodes;
-  like ++; 
-  likeVal[1].innerText = like;  
-  console.log(like);
-} */
+/* function Inc(likeValue) {
+   likeValue ++;
+   console.log(likeValue);
+}
+ */
 
 
 function displayCard(medias, template) {
@@ -163,17 +168,14 @@ function openModalPhoto(picture, title) {
 function closeModalPhoto() {
       document.querySelector('.modalCarrousel').style.display = "none";
 }
+ 
+function previousSlide() {
+  
+}
+function nextSlide() {
 
-function carrousel(media) {
-  const right = document.querySelector('.arrowRight');
-  const left = document.querySelector('.arrowLeft');
-  for(let i=0 ; i <= media  ; i++){
-     modalPhoto[i];
-     console.log(modalPhoto[i]);
-    }
-   
 }
 
 
-carrousel();
+
 
