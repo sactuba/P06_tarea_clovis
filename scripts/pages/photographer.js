@@ -69,7 +69,6 @@ async function photographerData() {
     let likeValue = 0;
     const heart = document.querySelectorAll('.heart');
     const allLikes = document.querySelector('.likeValue');
-    console.log(allLikes);
 
     photographerMedias.forEach(media => {
       likeValue = media.likes;
@@ -170,7 +169,6 @@ function closeModalPhoto() {
 }
  
 function previousSlide() {
-  
 }
 function nextSlide() {
 
