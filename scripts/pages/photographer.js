@@ -10,13 +10,12 @@ async function photographerData() {
     const filterTag = document.querySelector('#filter');
     const descHeader = document.querySelector('.descPhotographer');
     const headerImage = document.querySelector('.imagePhotographer');
-    const bannerLikesAndPrice = document.querySelector('.bannerLikesAndPrice');
     const carrousel = document.querySelectorAll('photoCarrousel');
   
     //filtrer les données media par rapport a l'id des photographe
-    const photographerDataFilter = data.photographers.filter(photographer => photographer.id == id)[0];
-    const photographerMedias = data.media.filter(media => media.photographerId == photographerDataFilter.id);
-    const photographerName = photographerDataFilter.name;
+    const photographer = data.photographers.filter(photographer => photographer.id == id)[0];
+    const photographerMedias = data.media.filter(media => media.photographerId == photographer.id);
+    const photographerName = photographer.name;
 
     //recuperer les values des option du select
     filterTag.addEventListener("change", function() {
@@ -46,10 +45,10 @@ async function photographerData() {
 
 
     //Header photographer Page Elements
-    const city = photographerDataFilter.city;
-    const country = photographerDataFilter.country;
-    const tagline = photographerDataFilter.tagline;
-    const image = photographerDataFilter.portrait;
+    const city = photographer.city;
+    const country = photographer.country;
+    const tagline = photographer.tagline;
+    const image = photographer.portrait;
     const urlImage = `../../assets/images/Photographers ID Photos/${image}`;
     descHeader.innerHTML += `<p class="name">${photographerName}</p>`;
     descHeader.innerHTML += `<p class="cityCountry">${city}, ${country}</p>`;
@@ -57,66 +56,47 @@ async function photographerData() {
     headerImage.innerHTML = `<img src="${urlImage}"></img>`;
 
     //Banner Total Likes and Price
-    let totalLikes = 0;
-    photographerMedias.forEach(media => {totalLikes += media.likes;});
-    const price = photographerDataFilter.price;
-    bannerLikesAndPrice.innerHTML += `<span class="likes"><span class="likeValue">${totalLikes}</span><i class="fas fa-heart"></i></span>`;
-    bannerLikesAndPrice.innerHTML += `<span class="priceBanner">${price}€/jour</span>`;
-
-    displayCard(photographerMedias, template);
     
+
+    displayCard(photographerMedias, template, photographer);
+    calculateTotalLikes(photographerMedias, photographer);
     
     let likeValue = 0;
     const heart = document.querySelectorAll('.heart');
     const allLikes = document.querySelector('.likeValue');
 
-    photographerMedias.forEach(media => {
-      likeValue = media.likes;
-      //console.log(likeValue);
-      /* for(let i = 0; i >= likeValue.length; i++){
-        likeValue[i];
-        console.log(likeValue[i]);
-      } */
-    }) 
-
-    heart.forEach(elt => {
-      elt.addEventListener("click", () => {
-          const parent= elt.parentNode;
-          const likeView = parent.childNodes;
-        /*let test1 = likeView[1].textContent;
-          const test2 = parseInt(test1);
-          console.log(test1);
-          console.log(test2); */
-          likeValue ++; 
-          likeView[1].innerText = likeValue; 
-          totalLikes ++;
-          allLikes.innerText = totalLikes;
-          //console.log(testo1);
-        })
-  });
-
-photographerMedias.forEach(media => {
-         medias = media.image ? media.image : media.video;
-         //console.log(medias);
-         console.log(medias.indexOf(media));
-})
 } 
 
 photographerData();
 
-/* function Inc(likeValue) {
-   likeValue ++;
-   console.log(likeValue);
-}
- */
 
 
-function displayCard(medias, template) {
+
+function displayCard(medias, template, photographer) {
   template.innerHTML = ` `;
   medias.forEach(media => {
     const photographerCard = MediaFactory.render(media);
     template.innerHTML += photographerCard;
+    document.addEventListener("click", function(e) {
+      if(e.target.id == `media-likes-${media.id}`){
+        const likesMedia = document.getElementById(`media-likes-${media.id}`)
+        media.likes += 1;
+        likesMedia.innerText = media.likes;
+        calculateTotalLikes(medias, photographer);
+
+      }
+    })
 }); 
+}
+
+function calculateTotalLikes(media, photographer) {
+  const bannerLikesAndPrice = document.querySelector('.bannerLikesAndPrice');
+  let totalLikes = 0;
+  media.forEach(medium => {totalLikes += medium.likes;});
+  const price = photographer.price;
+  bannerLikesAndPrice.innerHTML = `
+  <span class="likes"><span class="likeValue">${totalLikes}</span><i class="fas fa-heart"></i></span>
+  <span class="priceBanner">${price}€/jour</span>`;
 }
   
 class ImageFactory {
@@ -168,10 +148,9 @@ function closeModalPhoto() {
       document.querySelector('.modalCarrousel').style.display = "none";
 }
  
-function previousSlide() {
+function leftSlide() {
 }
-function nextSlide() {
-
+function rightSlide() {
 }
 
 

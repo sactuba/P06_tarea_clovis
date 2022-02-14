@@ -12,9 +12,9 @@ function photographerPhotoCard(media ) {
         <span class="descPhotoCard">
         <p class="titleCard">${title}</p>
         <p class="likesCard">
-        <span class="like">${likes}</span>
+        <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
-        <i class="fas fa-heart"></i></span>
+        <i class="fas fa-heart" id="media-likes-${media.id}"></i></span>
         </p>
         </span>
         </article>
@@ -40,9 +40,9 @@ function photographerVideoCard(media) {
         <span class="descPhotoCard"> 
         <p class="titleCard">${title}</p>
         <p class="likesCard">
-        <span class="like">${likes}</span>
+        <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
-        <i class="fas fa-heart"></i></span>
+        <i class="fas fa-heart" id="media-likes-${media.id}"></i></span>
         </p>
         </span>
         </article>
