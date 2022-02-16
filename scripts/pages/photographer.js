@@ -10,7 +10,6 @@ async function photographerData() {
     const filterTag = document.querySelector('#filter');
     const descHeader = document.querySelector('.descPhotographer');
     const headerImage = document.querySelector('.imagePhotographer');
-    const carrousel = document.querySelectorAll('photoCarrousel');
   
     //filtrer les données media par rapport a l'id des photographe
     const photographer = data.photographers.filter(photographer => photographer.id == id)[0];
@@ -54,17 +53,9 @@ async function photographerData() {
     descHeader.innerHTML += `<p class="cityCountry">${city}, ${country}</p>`;
     descHeader.innerHTML += `<p class="tagline">${tagline}</p>`;
     headerImage.innerHTML = `<img src="${urlImage}"></img>`;
-
-    //Banner Total Likes and Price
     
-
     displayCard(photographerMedias, template, photographer);
     calculateTotalLikes(photographerMedias, photographer);
-    
-    let likeValue = 0;
-    const heart = document.querySelectorAll('.heart');
-    const allLikes = document.querySelector('.likeValue');
-
 } 
 
 photographerData();
@@ -83,9 +74,13 @@ function displayCard(medias, template, photographer) {
         media.likes += 1;
         likesMedia.innerText = media.likes;
         calculateTotalLikes(medias, photographer);
-
       }
     })
+    //carrousel(media);
+    new Carrousel(media, document.querySelector('.carrousel__item'),options = {
+      slideVisible:1,
+      slideToScroll:1
+    }, options)
 }); 
 }
 
@@ -94,8 +89,9 @@ function calculateTotalLikes(media, photographer) {
   let totalLikes = 0;
   media.forEach(medium => {totalLikes += medium.likes;});
   const price = photographer.price;
-  bannerLikesAndPrice.innerHTML = `
-  <span class="likes"><span class="likeValue">${totalLikes}</span><i class="fas fa-heart"></i></span>
+  bannerLikesAndPrice.innerHTML  = `
+  <span class="likes"><span class="likeValue">${totalLikes}</span>
+  <i class="fas fa-heart"></i></span>
   <span class="priceBanner">${price}€/jour</span>`;
 }
   
@@ -126,33 +122,118 @@ class MediaFactory {
 }
 
 
+class Carrousel {
+  /**
+   * 
+   * @param {dataJSON} media 
+   * @param {HTMLelements} container 
+   * @param {option} options 
+   */
+      constructor(media, container, options = {}){
+        this.media = media
+        this.container = container;       
+        this.options = Object.assign({}, {
+          slideToScroll: 1,
+          slideVisible: 1
+        }, options) 
+        let items = this.createPhotoCarrousel(media);
+        this.children = [].slice.call(container.children); 
+        container.innerHTML += items;
+      }
 
-function openModalPhoto(picture, title) {  
+      /* createDiv(className) {
+        let div = document.createElement("div");
+        div.setAttribute("class", className)
+      } */
 
-        document.querySelector('.modalCarrousel').style.display = "inline-grid";
+/**
+ * 
+ * @param {string} media 
+ * @returns {HTMLElement}
+ */
+       createPhotoCarrousel(media) {
+        const picture = `assets/images/medias/${media.video ? media.video : media.image}`;
+        //const template = document.querySelector('.carrousel__container');
 
-    
-        const template = document.querySelector('.photoCarrousel'); 
-        const modalPhoto = `
-          <div class="photoModal">
-            <img src="${picture}" alt="" class="photoContent">
-            <span class="modalTitle">${title}</span>
-          </div>
-        `
-        template.innerHTML = modalPhoto;
-        return modalPhoto; 
+  if(media.video == undefined){
+    const carrouselPhoto = `
+      <div class="photoModal">
+        <img src="${picture}" alt="" class="photoContent">
+        <span class="modalTitle">${media.title}</span>
+      </div>
+    `
+    //template.innerHTML += carrouselPhoto;
+    return carrouselPhoto;
+  } else {
+    const carrouselPhoto = `
+      <div class="photoModal">
+      <video class="videoContent" src="${picture}" type="video/mp4" controls></video>        
+      <span class="modalTitle">${media.title}</span>
+      </div>
+    `
+    //template.innerHTML += carrouselPhoto;
+    return carrouselPhoto;
+}
+}
 }
 
+/*   new Carrousel(document.querySelector('.carrousel'),options = {
+    slideVisible:1,
+    slideToScroll:1
+  }, options) */ 
+
+
+
+/*  function carrousel(media) {
+  const picture = `assets/images/medias/${media.video ? media.video : media.image}`;
+  const template = document.querySelector('.carrousel__container');
+
+  if(media.video == undefined){
+    const carrouselPhoto = `
+      <div class="photoModal">
+        <img src="${picture}" alt="" class="photoContent">
+        <span class="modalTitle">${media.title}</span>
+      </div>
+    `
+    template.innerHTML += carrouselPhoto;
+    return carrouselPhoto;
+  } else {
+    const carrouselPhoto = `
+      <div class="photoModal">
+      <video class="videoContent" src="${picture}" type="video/mp4" controls></video>        
+      <span class="modalTitle">${media.title}</span>
+      </div>
+    `
+    template.innerHTML += carrouselPhoto;
+    return carrouselPhoto;
+}
+} */
+
+function openModalPhoto() {  
+        document.querySelector('.carrousel').style.display = "inline-grid";
+} 
 
 function closeModalPhoto() {
-      document.querySelector('.modalCarrousel').style.display = "none";
+        document.querySelector('.carrousel').style.display = "none";
 }
- 
-function leftSlide() {
+    
+
+function leftSlide() {  
 }
 function rightSlide() {
 }
 
-
-
+/*  createElement(media) {
+  const picture = `assets/images/medias/${this.video ? this.video : this.image}`;
+  const template = document.querySelector('.photoCarrousel'); 
+  const modalPhoto = `
+    <div class="photoModal">
+      <img src="${picture}" alt="" class="photoContent">
+      <span class="modalTitle">${this.title}</span>
+    </div>
+  `
+  template.innerHTML += modalPhoto;
+  return modalPhoto;  
+}
+ */
 
