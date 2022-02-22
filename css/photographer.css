@@ -5,13 +5,17 @@
 #mainHeader {
   background-color: #fafafa;
   height: 300px;
-  margin: 0 100px;
+  margin: 0 50px;
 }
 
 .photographer-header {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+}
+
+.descPhotographer {
+  margin-top: 30px;
 }
 
 .imagePhotographer {
@@ -72,6 +76,7 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  align-self: center;
 }
 
 .modal {
@@ -140,6 +145,7 @@ form textarea {
 }
 
 .filterLabel {
+  margin-left: 100px;
   font-family: DM Sans;
   font-size: 18px;
   font-style: normal;
@@ -184,8 +190,8 @@ select {
   color: #fff;
 }
 
-/* Modal photo */
-.modalCarrousel {
+/* Carrousel  photo */
+.lightbox__modal {
   position: relative;
   display: none;
   z-index: 1;
@@ -198,12 +204,19 @@ select {
   position: fixed;
 }
 
-.photoCarrousel {
-  height: 650px;
-  border: 2px solid black;
-  overflow: hidden;
+.lightbox__container {
+  width: 80%;
+  height: 70%;
   justify-self: center;
-  width: 50%;
+  display: flex;
+  column-gap: 100px;
+  position: relative;
+  border: 2px solid black;
+}
+
+.carrousel__item {
+  display: flex;
+  column-gap: 50px;
 }
 
 .fa-times {
@@ -224,29 +237,35 @@ select {
 .close {
   color: #901c1c;
   position: absolute;
-  top: 80px;
-  right: 250px;
+  right: 30px;
   font-weight: bold;
 }
 
 .photoModal {
   display: flex;
-  justify-content: center;
-  /* flex-direction: column; */
-  max-height: 100%;
-  margin: auto auto;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
 }
 
 .photoContent {
-  max-width: 40%;
+  height: inherit;
+  width: 600px;
+  object-fit: cover;
+}
+
+.videoContent {
+  height: 450px;
+  width: 600px;
   object-fit: cover;
 }
 
 .arrowRight {
   color: #901c1c;
   position: absolute;
-  right: 20%;
-  top: 50%;
+  right: 10px;
+  top: 40%;
   font-size: 80px;
   cursor: pointer;
 }
@@ -254,8 +273,8 @@ select {
 .arrowLeft {
   color: #901c1c;
   position: absolute;
-  left: 20%;
-  top: 50%;
+  left: 10px;
+  top: 40%;
   font-size: 80px;
   cursor: pointer;
 }
@@ -270,4 +289,9 @@ select {
   /*   position: absolute;
   bottom: -35px;
   left: 25%; */
+}
+@media screen and (max-width: 1024px) {
+  .contact_button {
+    display: none;
+  }
 }

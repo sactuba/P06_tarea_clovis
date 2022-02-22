@@ -1,13 +1,12 @@
-function photographerPhotoCard(media ) {
+function photographerPhotoCard(media) {
     const { title, image, id, likes } = media;
     const picture = `assets/images/medias/${image}`;
-
     function displayPhotoCard() {
 
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <img src="${picture}" onclick="openModalPhoto('${picture}', '${title}')"></img>
+        <img src="${picture}" id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')"></img>
         </div>
         <span class="descPhotoCard">
         <p class="titleCard">${title}</p>
@@ -16,9 +15,10 @@ function photographerPhotoCard(media ) {
         <span class="heart">
         <i class="fas fa-heart" id="media-likes-${media.id}"></i></span>
         </p>
-        </span>
+        </span> 
         </article>
         `
+        //console.log(article);
         return (article);
     }
     return { title, image, id, likes, displayPhotoCard }
@@ -27,15 +27,13 @@ function photographerPhotoCard(media ) {
 
 function photographerVideoCard(media) {
     const { title,video, id, likes } = media;
-
     const picture = `assets/images/medias/${video}`;
 
     function displayVideoCard() {
-
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <video src="${picture}" type="video/mp4" controls onclick="openModalPhoto('${picture}', '${title}')"></video>
+        <video src="${picture}" type="video/mp4" controls id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')"></video>
         </div>
         <span class="descPhotoCard"> 
         <p class="titleCard">${title}</p>
@@ -53,16 +51,5 @@ function photographerVideoCard(media) {
 }
 
 
-
-
- 
-/* function modalCarousel(picture, title) {
-    //const { image, title } = media;
-    //const picture = `../../assets/images/medias/${image}`; */
-
-
-/*     return { picture, title, displayModalPhoto }
-}
- */
 
 
