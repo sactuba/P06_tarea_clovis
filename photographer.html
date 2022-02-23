@@ -18,7 +18,7 @@
   </head>
   <body>
     <header>
-      <a href="index.html">
+      <a href="index.html" tabindex="0">
         <img src="assets/icons/logo.png" class="logo" />
       </a>
     </header>
@@ -30,18 +30,23 @@
         </button>
         <div class="imagePhotographer"></div>
       </div>
+
+      <div class="filterBox">
+        <label for="filter" class="filterLabel">Trier par:</label>
+        <select name="filter" id="filter">
+          <option class="option" value="popularity" selected>Popularité</option>
+          <option class="option" value="date">Date</option>
+          <option class="option" value="title">Titre</option>
+        </select>
+      </div>
+
+      <div class="template"></div>
+
+      <div class="bannerLikesAndPrice"></div>
+
+      <div id="contact_modal"></div>
     </main>
-    <div class="filterBox">
-      <label for="filter" class="filterLabel">Trier par:</label>
-      <select name="filter" id="filter">
-        <option class="option" value="popularity" selected>Popularité</option>
-        <option class="option" value="date">Date</option>
-        <option class="option" value="title">Titre</option>
-      </select>
-    </div>
-    <div class="template"></div>
-    <div class="bannerLikesAndPrice"></div>
-    <div id="contact_modal"></div>
+
     <div class="lightbox__modal">
       <span class="close">
         <i class="fas fa-times" onclick="closeModalPhoto()"></i>

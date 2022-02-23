@@ -7,8 +7,8 @@ function photographerFactory(photographer) {
 
         const article =
         `<article>
-        <a href="/photographer.html?id=${id}">
-        <img src="${picture}"></img>
+        <a href="/photographer.html?id=${id}" tabindex="1">
+        <img src="${picture}" alt="${name}"></img>
         </a>
         <h2>${name}</h2>
         <span>${country}, ${city}</span>

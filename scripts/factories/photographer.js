@@ -1,3 +1,4 @@
+let index = 0;
 function photographerPhotoCard(media) {
     const { title, image, id, likes } = media;
     const picture = `assets/images/medias/${image}`;
@@ -6,7 +7,7 @@ function photographerPhotoCard(media) {
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <img src="${picture}" id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')"></img>
+        <img src="${picture}" alt="${title}" id="media-${id}"  onclick="openModalPhoto('${picture}', '${title}')" tabindex="${index++}"></img>
         </div>
         <span class="descPhotoCard">
         <p class="titleCard">${title}</p>
@@ -33,7 +34,7 @@ function photographerVideoCard(media) {
         const article =
        `<article class="photoCard">
         <div class="imageCard">
-        <video src="${picture}" type="video/mp4" controls id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')"></video>
+        <video title="${title}" src="${picture}" type="video/mp4" controls id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')" tabindex="${index++}"></video>
         </div>
         <span class="descPhotoCard"> 
         <p class="titleCard">${title}</p>

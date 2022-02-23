@@ -84,6 +84,7 @@ function displayCard(medias, template, photographer) {
       }
     });
   })
+
   let mediaIndex = 0;
   document.querySelector('.fa-angle-left').addEventListener("click", function() {
     mediaIndex--;
@@ -96,8 +97,8 @@ function displayCard(medias, template, photographer) {
       previousMedia(media, title);
       console.log(mediaIndex);
     }
-    //if(mediaIndex < 0) {mediaIndex = mediaLength}
   }) 
+  
   document.querySelector('.fa-angle-right').addEventListener("click", function() {
     mediaIndex++;
     let mediaLength = medias.length;
@@ -109,7 +110,6 @@ function displayCard(medias, template, photographer) {
            nextMedia(media, title);
            console.log(mediaIndex);
          }
-         //if(mediaIndex < mediaLength) {mediaIndex = mediaLength-1}
   }) 
 }
 
@@ -136,7 +136,7 @@ const template = document.querySelector('.lightbox__container');
 
 if(picture == picture){
 const lightboxMedia = `
-<div class="photoModal">
+<div class="lightbox_modal">
 <img src="${picture}" alt="" class="photoContent">
 <span class="modalTitle">${title}</span>
 </div>
@@ -146,7 +146,7 @@ return lightboxMedia;
 
 } else {
 const lightboxMedia = `
-<div class="photoModal">
+<div class="lightbox_modal">
 <video class="videoContent" src="${picture}" type="video/mp4" controls></video>        
 <span class="modalTitle">${title}</span>
 </div>
@@ -182,6 +182,26 @@ class MediaFactory {
   }
 }
 
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        //up arrow
+    }
+    else if (e.keyCode == '40') {
+        //down arrow
+    }
+    else if (e.keyCode == '37') {
+       //left arrow
+    }
+    else if (e.keyCode == '39') {
+       //right arrow
+    }
+  }
 
 /* class Carrousel {
  
