@@ -52,10 +52,10 @@ function photographerBanner(photographer){
   const descHeader = document.querySelector('.descPhotographer');
   const headerImage = document.querySelector('.imagePhotographer');
   const urlImage = `../../assets/images/Photographers ID Photos/${photographer.portrait}`;
-  descHeader.innerHTML += `<p class="name">${photographer.name}</p>`;
-  descHeader.innerHTML += `<p class="cityCountry">${photographer.city}, ${photographer.country}</p>`;
+  descHeader.innerHTML += `<h1 class="name">${photographer.name}</h1>`;
+  descHeader.innerHTML += `<h2 class="cityCountry">${photographer.city}, ${photographer.country}</h2>`;
   descHeader.innerHTML += `<p class="tagline">${photographer.tagline}</p>`;
-  headerImage.innerHTML = `<img src="${urlImage}"></img>`;
+  headerImage.innerHTML = `<img src="${urlImage}" alt="${photographer.name}"></img>`;
 }
 
 
@@ -87,39 +87,48 @@ function displayCard(medias, template, photographer) {
 
   let mediaIndex = 0;
   document.querySelector('.fa-angle-left').addEventListener("click", function() {
-    mediaIndex--;
-    let mediaLength = medias.length;
-    const elt = document.querySelector('.photoContent').src;
-    for(let i = 0; i <= mediaLength; i++) {  
-      if(mediaIndex <= 0 ) {mediaIndex = mediaLength }
-      const media = elt.src =  `assets/images/medias/${medias[mediaIndex].video ? medias[mediaIndex].video : medias[mediaIndex].image}`
-      const title = medias[mediaIndex].title;  
-      previousMedia(media, title);
-      console.log(mediaIndex);
-    }
+    showNextMedia();
   }) 
   
+  function showNextMedia() {
+    mediaIndex--;
+    let mediaLength = medias.length;
+    for(let i = 0; i <= mediaLength; i++) {  
+      if(mediaIndex < 0 ) {mediaIndex = mediaLength - 1}
+      const media = `assets/images/medias/${medias[mediaIndex].video ? medias[mediaIndex].video : medias[mediaIndex].image}`
+      const title = medias[mediaIndex].title;  
+      createPhotoLighhtbox(media, title);
+      console.log(mediaIndex);
+    }
+  }
+  
   document.querySelector('.fa-angle-right').addEventListener("click", function() {
+    showPreviousMedia();
+  }) 
+
+  function showPreviousMedia() {
     mediaIndex++;
     let mediaLength = medias.length;
-    const elt = document.querySelector('.photoContent');
     for(let i = 0; i <= mediaLength; i++) {
       if(mediaIndex >= mediaLength) {mediaIndex = 0}
-           const media = elt.src = `assets/images/medias/${medias[mediaIndex].video ? medias[mediaIndex].video : medias[mediaIndex].image}`;
+           const media = `assets/images/medias/${medias[mediaIndex].video ? medias[mediaIndex].video : medias[mediaIndex].image}`;
            const title = medias[mediaIndex].title;   
-           nextMedia(media, title);
+           createPhotoLighhtbox(media, title);
            console.log(mediaIndex);
          }
-  }) 
+  }
+
+  const lightbox__modal = document.querySelector('.lightbox__modal');
+  document.onkeydown = function(e) {
+    e = e || window.event;
+    if(e.keyCode == '37') { showPreviousMedia()}
+    if(e.keyCode == '39') { showNextMedia()}
+    if(e.keyCode == '27') {closeModalPhoto()}
+    if(e.keyCode == '13') {openModalPhoto(picture, title)}
+  }
 }
 
-function previousMedia(media, title) {  
-  createPhotoLighhtbox(media, title);
-}
 
-function nextMedia(media, title) {
-  createPhotoLighhtbox(media, title);
-}
 
 function openModalPhoto(picture, title) {  
   document.querySelector('.lightbox__modal').style.display = "inline-grid";
@@ -133,27 +142,26 @@ function closeModalPhoto() {
 
 function createPhotoLighhtbox(picture, title) {
 const template = document.querySelector('.lightbox__container');
+const extension = picture.split('.').pop();
+   if(extension == "jpg"){
+     const lightboxMedia = `
+       <div class="lightbox_modal">
+       <img src="${picture}" alt="" class="photoContent">
+       <span class="modalTitle">${title}</span>
+       </div>
+       `
+       template.innerHTML = lightboxMedia;
+        return lightboxMedia;
 
-if(picture == picture){
-const lightboxMedia = `
-<div class="lightbox_modal">
-<img src="${picture}" alt="" class="photoContent">
-<span class="modalTitle">${title}</span>
-</div>
-`
-template.innerHTML = lightboxMedia;
-return lightboxMedia;
-
-} else {
-const lightboxMedia = `
-<div class="lightbox_modal">
-<video class="videoContent" src="${picture}" type="video/mp4" controls></video>        
-<span class="modalTitle">${title}</span>
-</div>
-`
-template.innerHTML = lightboxMedia;
-return lightboxMedia;
-
+     } else {
+      const lightboxMedia = `
+      <div class="lightbox_modal">
+      <video class="videoContent" src="${picture}" type="video/mp4" controls></video>        
+      <span class="modalTitle">${title}</span>
+      </div>
+      `
+      template.innerHTML = lightboxMedia;
+         return lightboxMedia;
 }
 } 
 class ImageFactory {
@@ -201,42 +209,9 @@ function checkKey(e) {
     else if (e.keyCode == '39') {
        //right arrow
     }
+    else if (e.keyCode == '13') {
+       //right arrow
+    }
   }
 
-/* class Carrousel {
- 
-      constructor(media, container){
-        this.media = media
-        this.container = document.querySelector('.lightbox__container');        
-        let items = this.createPhotoCarrousel(media);
-        this.children = [].slice.call(container.children); 
-        container.innerHTML += items;
-      }
 
-
-       createPhotoCarrousel(media) {
-        const picture = `assets/images/medias/${media.video ? media.video : media.image}`;
-        //const template = document.querySelector('.carrousel__container');
-
-  if(media.video == undefined){
-    const carrouselPhoto = `
-      <div class="photoModal">
-        <img src="${picture}" alt="" class="photoContent">
-        <span class="modalTitle">${media.title}</span>
-      </div>
-    `
-    //template.innerHTML += carrouselPhoto;
-    return carrouselPhoto;
-  } else {
-    const carrouselPhoto = `
-      <div class="photoModal">
-      <video class="videoContent" src="${picture}" type="video/mp4" controls></video>        
-      <span class="modalTitle">${media.title}</span>
-      </div>
-    `
-    //template.innerHTML += carrouselPhoto;
-    return carrouselPhoto;
-}
-}
-}
- */

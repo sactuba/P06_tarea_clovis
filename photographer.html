@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -18,33 +18,40 @@
   </head>
   <body>
     <header>
-      <a href="index.html" tabindex="0">
-        <img src="assets/icons/logo.png" class="logo" />
+      <a href="index.html" class="logo__photographerPage" tabindex="0">
+        <img src="assets/icons/logo.png" class="logo" alt="logo fisheye" />
       </a>
+      <section id="mainHeader">
+        <div class="photographer-header">
+          <div class="descPhotographer"></div>
+          <button
+            class="contact_button"
+            onclick="displayModal()"
+            aria-label="contact"
+            aria-hidden="true"
+          >
+            Contactez-moi
+          </button>
+          <div class="imagePhotographer"></div>
+        </div>
+      </section>
     </header>
-    <main id="mainHeader">
-      <div class="photographer-header">
-        <div class="descPhotographer"></div>
-        <button class="contact_button" onclick="displayModal()">
-          Contactez-moi
-        </button>
-        <div class="imagePhotographer"></div>
-      </div>
 
-      <div class="filterBox">
+    <main>
+      <section class="filterBox">
         <label for="filter" class="filterLabel">Trier par:</label>
         <select name="filter" id="filter">
           <option class="option" value="popularity" selected>Popularité</option>
           <option class="option" value="date">Date</option>
           <option class="option" value="title">Titre</option>
         </select>
-      </div>
+      </section>
 
       <div class="template"></div>
 
-      <div class="bannerLikesAndPrice"></div>
-
       <div id="contact_modal"></div>
+
+      <div class="bannerLikesAndPrice"></div>
     </main>
 
     <div class="lightbox__modal">
