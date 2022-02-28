@@ -214,4 +214,12 @@ class MediaFactory {
     }
   } */
 
+  $(img).on({
+    focus: function () {
+        $(this).addClass('focused');
+    },
 
+    blur: function () {
+        $(this).removeClass('focused');
+    }
+});

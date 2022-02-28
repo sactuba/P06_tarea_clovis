@@ -295,6 +295,11 @@ select:focus {
   bottom: -35px;
   left: 25%; */
 }
+
+.focused {
+  border: #901c1c solid 2px;
+}
+
 @media screen and (max-width: 1024px) {
   .contact_button {
     display: none;
