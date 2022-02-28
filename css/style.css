@@ -18,12 +18,17 @@ H2 {
   margin: 0 100px;
 }
 
+.logo__photographerPage {
+  align-self: flex-start;
+  margin-left: 3%;
+}
+
 header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 10%;
 }
 
 h1 {
@@ -33,7 +38,6 @@ h1 {
 
 .logo {
   height: 50px;
-  margin-left: 100px;
 }
 
 .photographer_section {
@@ -58,7 +62,7 @@ h1 {
 
 .photographer_section article span {
   font-family: DM Sans;
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: 17px;
@@ -69,7 +73,7 @@ h1 {
 
 .tag {
   font-family: DM Sans;
-  font-size: 10px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: 13px;
@@ -79,7 +83,7 @@ h1 {
 
 .price {
   font-family: DM Sans;
-  font-size: 9px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 12px;
@@ -100,7 +104,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 5%;
-  row-gap: 8%;
+  row-gap: 100px;
 }
 
 .photoCard {
@@ -136,6 +140,10 @@ h1 {
   line-height: 31px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.titleCard {
+  margin: 0;
 }
 
 .bannerLikesAndPrice {

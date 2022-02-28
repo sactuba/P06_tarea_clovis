@@ -52,10 +52,10 @@ function photographerBanner(photographer){
   const descHeader = document.querySelector('.descPhotographer');
   const headerImage = document.querySelector('.imagePhotographer');
   const urlImage = `../../assets/images/Photographers ID Photos/${photographer.portrait}`;
-  descHeader.innerHTML += `<h1 class="name">${photographer.name}</h1>`;
-  descHeader.innerHTML += `<h2 class="cityCountry">${photographer.city}, ${photographer.country}</h2>`;
-  descHeader.innerHTML += `<p class="tagline">${photographer.tagline}</p>`;
-  headerImage.innerHTML = `<img src="${urlImage}" alt="${photographer.name}"></img>`;
+  descHeader.innerHTML += `<h1 class="name" tabindex="0">${photographer.name}</h1>`;
+  descHeader.innerHTML += `<h2 class="cityCountry" tabindex="0">${photographer.city}, ${photographer.country}</h2>`;
+  descHeader.innerHTML += `<p class="tagline" tabindex="0">${photographer.tagline}</p>`;
+  headerImage.innerHTML = `<img src="${urlImage}" alt="${photographer.name}" tabindex="0"></img>`;
 }
 
 
@@ -65,9 +65,9 @@ function calculateTotalLikes(media, photographer) {
   media.forEach(medium => {totalLikes += medium.likes;});
   const price = photographer.price;
   bannerLikesAndPrice.innerHTML  = `
-  <span class="likes"><span class="likeValue">${totalLikes}</span>
+  <span class="likes"><span class="likeValue" tabindex="0">${totalLikes}</span>
   <i class="fas fa-heart"></i></span>
-  <span class="priceBanner">${price}€/jour</span>`;
+  <span class="priceBanner" tabindex="0">${price}€/jour</span>`;
 }
 
 function displayCard(medias, template, photographer) {
@@ -118,13 +118,13 @@ function displayCard(medias, template, photographer) {
          }
   }
 
-  const lightbox__modal = document.querySelector('.lightbox__modal');
+  //const lightbox__modal = document.querySelector('.lightbox__modal');
   document.onkeydown = function(e) {
     e = e || window.event;
     if(e.keyCode == '37') { showPreviousMedia()}
     if(e.keyCode == '39') { showNextMedia()}
-    if(e.keyCode == '27') {closeModalPhoto()}
-    if(e.keyCode == '13') {openModalPhoto(picture, title)}
+    if(e.keyCode == '27') {closeModalPhoto() ||closeModal()}
+    if(e.keyCode == '13') {openModalPhoto()}
   }
 }
 
@@ -191,9 +191,9 @@ class MediaFactory {
 }
 
 
-document.onkeydown = checkKey;
+//document.onkeydown = checkKey;
 
-function checkKey(e) {
+/* function checkKey(e) {
 
     e = e || window.event;
 
@@ -212,6 +212,6 @@ function checkKey(e) {
     else if (e.keyCode == '13') {
        //right arrow
     }
-  }
+  } */
 
 

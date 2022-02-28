@@ -1,16 +1,18 @@
-let index = 0;
+//let index = 3;
 function photographerPhotoCard(media) {
     const { title, image, id, likes } = media;
     const picture = `assets/images/medias/${image}`;
     function displayPhotoCard() {
 
         const article =
-       `<article class="photoCard">
+        
+       `<div>
+       <article class="photoCard">
         <div class="imageCard">
-        <img src="${picture}" alt="${title}" id="media-${id}"  onclick="openModalPhoto('${picture}', '${title}')" tabindex="${index++}"></img>
+        <img src="${picture}" alt="${title}" class="photoCard" id="media-${id}"  onclick="openModalPhoto('${picture}', '${title}')" tabindex="0"></img>
         </div>
-        <span class="descPhotoCard">
-        <p class="titleCard">${title}</p>
+        <span class="descPhotoCard" tabindex="0">
+        <h3 class="titleCard">${title}</h3>
         <p class="likesCard">
         <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
@@ -18,6 +20,7 @@ function photographerPhotoCard(media) {
         </p>
         </span> 
         </article>
+        </div>
         `
         //console.log(article);
         return (article);
@@ -32,12 +35,14 @@ function photographerVideoCard(media) {
 
     function displayVideoCard() {
         const article =
-       `<article class="photoCard">
+        
+       `<div>
+       <article class="photoCard">
         <div class="imageCard">
-        <video title="${title}" src="${picture}" type="video/mp4" controls id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')" tabindex="${index++}"></video>
+        <video title="${title}" src="${picture}" class="videoCard" type="video/mp4" controls id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')" tabindex="0"></video>
         </div>
-        <span class="descPhotoCard"> 
-        <p class="titleCard">${title}</p>
+        <span class="descPhotoCard" tabindex="0"> 
+        <h3 class="titleCard">${title}</h3>
         <p class="likesCard">
         <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
@@ -45,6 +50,7 @@ function photographerVideoCard(media) {
         </p>
         </span>
         </article>
+        </div>
         `
         return (article);
     }

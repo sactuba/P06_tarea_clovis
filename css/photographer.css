@@ -6,6 +6,7 @@
   background-color: #fafafa;
   height: 300px;
   margin: 0 50px;
+  width: 95%;
 }
 
 .photographer-header {
@@ -40,7 +41,7 @@
   letter-spacing: 0em;
   text-align: left;
   color: #d3573c;
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .cityCountry {
@@ -79,6 +80,12 @@
   align-self: center;
 }
 
+.contact_button:hover,
+.contact_button:focus {
+  background-color: #d3573c;
+  color: black;
+}
+
 .modal {
   position: absolute;
   border-radius: 5px;
@@ -101,6 +108,7 @@
 
 .modal header img {
   cursor: pointer;
+  align-self: end;
 }
 
 .modal header h2 {
@@ -179,6 +187,11 @@ select {
   background-repeat: no-repeat;
 }
 
+select:hover,
+select:focus {
+  background-color: #d3573c;
+}
+
 .option {
   font-family: DM Sans;
   font-size: 18px;
@@ -211,22 +224,13 @@ select {
   display: flex;
   column-gap: 100px;
   position: relative;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
 .carrousel__item {
   display: flex;
   column-gap: 50px;
 }
-
-/* .fa-times {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  margin: 0 50px;
-  
-} */
 
 .modalContent {
   position: relative;
@@ -247,7 +251,7 @@ select {
   flex-direction: column;
   height: 100%;
   width: 100%;
-  align-items: center;
+  margin: 0 25%;
 }
 
 .photoContent {
