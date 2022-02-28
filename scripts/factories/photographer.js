@@ -9,14 +9,21 @@ function photographerPhotoCard(media) {
        `<div>
        <article class="photoCard">
         <div class="imageCard">
-        <img src="${picture}" alt="${title}" id="media-${id}"  onclick="openModalPhoto('${picture}', '${title}')" tabindex="0"></img>
+        <img
+         src="${picture}"
+         alt="${title}"
+          id="media-${id}"
+            onclick="openModalPhoto('${picture}', '${title}')"
+             tabindex="0"
+             onkeypress="openModalPhoto('${picture}', '${title}')"
+             ></img>
         </div>
         <span class="descPhotoCard" tabindex="0">
         <h3 class="titleCard">${title}</h3>
         <p class="likesCard">
         <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
-        <i class="fas fa-heart" id="media-likes-${media.id}"></i></span>
+        <i class="fas fa-heart" id="media-likes-${media.id}" tabindex="0"></i></span>
         </p>
         </span> 
         </article>
@@ -39,14 +46,22 @@ function photographerVideoCard(media) {
        `<div>
        <article class="photoCard">
         <div class="imageCard">
-        <video title="${title}" src="${picture}" type="video/mp4" controls id="media-${id}" onclick="openModalPhoto('${picture}', '${title}')" tabindex="0"></video>
+        <video
+         title="${title}"
+          src="${picture}"
+           type="video/mp4"
+            controls id="media-${id}"
+             onclick="openModalPhoto('${picture}', '${title}')"
+              tabindex="0"
+              onkeypress="openModalPhoto('${picture}', '${title}')"
+              ></video>
         </div>
         <span class="descPhotoCard" tabindex="0"> 
         <h3 class="titleCard">${title}</h3>
         <p class="likesCard">
         <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
-        <i class="fas fa-heart" id="media-likes-${media.id}"></i></span>
+        <i class="fas fa-heart" id="media-likes-${media.id}" tabindex="0"></i></span>
         </p>
         </span>
         </article>

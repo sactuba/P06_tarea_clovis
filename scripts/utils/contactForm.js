@@ -1,6 +1,7 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
-    document.body.style.opacity = "0.5";
+    document.querySelector('.header-photographerPage').style.opacity = "0.5";
+    document.querySelector('#main').style.opacity = "0.5";
     //document.querySelector('.modal').style.opacity = "1";
 	  modal.style.display = "block";
     modal.innerHTML = `
@@ -34,7 +35,8 @@ function displayModal() {
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
-    document.body.style.opacity = "1";
+    document.querySelector('.header-photographerPage').style.opacity = "1";
+    document.querySelector('#main').style.opacity = "1";
     modal.style.display = "none";
 }
 

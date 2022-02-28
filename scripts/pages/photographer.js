@@ -123,8 +123,7 @@ function displayCard(medias, template, photographer) {
     e = e || window.event;
     if(e.keyCode == '37') { showPreviousMedia()}
     if(e.keyCode == '39') { showNextMedia()}
-    if(e.keyCode == '27') {closeModalPhoto() ||closeModal()}
-    if(e.keyCode == '13') {openModalPhoto()}
+    if(e.keyCode == '27') {closeModalPhoto() || closeModal()}
   }
 }
 
@@ -189,37 +188,3 @@ class MediaFactory {
     }
   }
 }
-
-
-//document.onkeydown = checkKey;
-
-/* function checkKey(e) {
-
-    e = e || window.event;
-
-    if (e.keyCode == '38') {
-        //up arrow
-    }
-    else if (e.keyCode == '40') {
-        //down arrow
-    }
-    else if (e.keyCode == '37') {
-       //left arrow
-    }
-    else if (e.keyCode == '39') {
-       //right arrow
-    }
-    else if (e.keyCode == '13') {
-       //right arrow
-    }
-  } */
-
-  $(img).on({
-    focus: function () {
-        $(this).addClass('focused');
-    },
-
-    blur: function () {
-        $(this).removeClass('focused');
-    }
-});
