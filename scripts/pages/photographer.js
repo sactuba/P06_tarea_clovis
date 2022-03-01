@@ -83,7 +83,16 @@ function displayCard(medias, template, photographer) {
         calculateTotalLikes(medias, photographer);
       }
     });
+    document.addEventListener("keypress", function(e) {
+      if(e.target.id == `media-likes-${media.id}`){
+        const likesMedia = document.getElementById(`media-likes-${media.id}`)
+        media.likes += 1;
+        likesMedia.innerText = media.likes;
+        calculateTotalLikes(medias, photographer);
+      }
+    });
   })
+
 
   let mediaIndex = 0;
   document.querySelector('.fa-angle-left').addEventListener("click", function() {

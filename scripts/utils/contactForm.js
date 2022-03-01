@@ -1,8 +1,8 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
+    console.log(firstInput);
     document.querySelector('.header-photographerPage').style.opacity = "0.5";
     document.querySelector('#main').style.opacity = "0.5";
-    //document.querySelector('.modal').style.opacity = "1";
 	  modal.style.display = "block";
     modal.innerHTML = `
     <div class="modal">
