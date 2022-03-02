@@ -1,4 +1,4 @@
-
+ 
     async function displayData() {
         const photographersSection = document.querySelector(".photographer_section");
         fetch('../../data/photographers.json')

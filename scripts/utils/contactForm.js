@@ -1,6 +1,5 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
-    console.log(firstInput);
     document.querySelector('.header-photographerPage').style.opacity = "0.5";
     document.querySelector('#main').style.opacity = "0.5";
 	  modal.style.display = "block";
@@ -27,7 +26,7 @@ function displayModal() {
         <label for="message" tabindex="0">Votre message</label>
         <textarea id="message" type="text" name="message" tabindex="0"></textarea>
       </div>
-      <button type="submit" class="contact_button" onclick="submit()" aria-hidden="true" tabindex="0">Envoyer</button>
+      <button type="submit" class="contact_button" onclick="submit()" aria-hidden="true" tabindex="0" aria-label="Validate">Envoyer</button>
     </form>
   </div>
     `

@@ -18,7 +18,12 @@
   </head>
   <body>
     <header class="header-photographerPage">
-      <a href="index.html" class="logo__photographerPage" tabindex="0">
+      <a
+        href="index.html"
+        class="logo__photographerPage"
+        tabindex="0"
+        aria-label="back to home page"
+      >
         <img src="assets/icons/logo.png" class="logo" alt="logo fisheye" />
       </a>
       <section id="mainHeader">
@@ -29,6 +34,7 @@
             onclick="displayModal()"
             aria-label="contact"
             aria-hidden="true"
+            aria-label="contact"
           >
             Contactez-moi
           </button>
@@ -41,9 +47,20 @@
       <section class="filterBox">
         <label for="filter" class="filterLabel">Trier par:</label>
         <select name="filter" id="filter">
-          <option class="option" value="popularity" selected>Popularité</option>
-          <option class="option" value="date">Date</option>
-          <option class="option" value="title">Titre</option>
+          <option
+            class="option"
+            value="popularity"
+            selected
+            aria-label="filter by popularity"
+          >
+            Popularité
+          </option>
+          <option class="option" value="date" aria-label="filter by date">
+            Date
+          </option>
+          <option class="option" value="title" aria-label="filter by title">
+            Titre
+          </option>
         </select>
       </section>
 
@@ -60,13 +77,18 @@
           onclick="closeModalPhoto()"
           onkeypress="closeModalPhoto()"
           tabindex="0"
+          aria-label="close light box"
         ></i>
       </span>
       <span class="arrowRight">
-        <i class="fas fa-angle-right" tabindex="0"></i>
+        <i class="fas fa-angle-right" tabindex="0" aria-label="next photo"></i>
       </span>
       <span class="arrowLeft">
-        <i class="fas fa-angle-left" tabindex="0"></i>
+        <i
+          class="fas fa-angle-left"
+          tabindex="0"
+          aria-label="previous photo"
+        ></i>
       </span>
       <div class="lightbox__container"></div>
     </div>
