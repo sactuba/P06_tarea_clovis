@@ -23,7 +23,7 @@ function photographerPhotoCard(media) {
         <p class="likesCard">
         <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
-        <i class="fas fa-heart" id="media-likes-${media.id}" tabindex="0"></i></span>
+        <i class="fas fa-heart" id="media-likes-${media.id}" tabindex="0" aria-label="like photo"></i></span>
         </p>
         </span> 
         </article>
@@ -50,7 +50,7 @@ function photographerVideoCard(media) {
          title="${title}"
           src="${picture}"
            type="video/mp4"
-            controls id="media-${id}"
+             id="media-${id}"
              onclick="openModalPhoto('${picture}', '${title}')"
               tabindex="0"
               onkeypress="openModalPhoto('${picture}', '${title}')"
@@ -61,7 +61,7 @@ function photographerVideoCard(media) {
         <p class="likesCard">
         <span class="like" id="media-likes-${media.id}">${likes}</span>
         <span class="heart">
-        <i class="fas fa-heart" id="media-likes-${media.id}" tabindex="0"></i></span>
+        <i class="fas fa-heart" id="media-likes-${media.id}" tabindex="0" aria-label="like video"></i></span>
         </p>
         </span>
         </article>

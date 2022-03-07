@@ -7,13 +7,13 @@ function photographerFactory(photographer) {
 
         const article =
         `<article>
-        <a href="/photographer.html?id=${id}" tabindex="1">
+        <a href="/photographer.html?id=${id}" tabindex="0">
         <img src="${picture}" alt="${name}"></a>
         </a>
         <h2>${name}</h2>
-        <span>${country}, ${city}</span>
-        <p class="tag">${tagline}</p>
-        <p class="price">${price} €/jour</p>
+        <span arira-label="${country}, ${city}" tabindex="0">${country}, ${city}</span>
+        <p class="tag" aria-label="${tagline}" tabindex="0">${tagline}</p>
+        <p class="price" aria-label="${price}€" tabindex="0">${price} €/jour</p>
         </article>
 
         `
