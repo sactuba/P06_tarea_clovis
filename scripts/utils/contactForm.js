@@ -9,10 +9,10 @@ function displayModal() {
       <h2 aria-label="contact">Contactez-moi</h2>
       <img src="assets/icons/close.svg" onclick="closeModal()" />
     </header>
-    <form>
+    <form methode="GET" action="#">
       <div>
         <label for="prenom" tabindex="0">Prénom</label>
-        <input id="prenom" type="text" name="prenom" autofocus tabindex="0"/>
+        <input id="prenom" type="text" name="prenom" tabindex="0"/>
       </div>
       <div>
         <label for="nom" tabindex="0">Nom</label>
@@ -26,7 +26,7 @@ function displayModal() {
         <label for="message" tabindex="0">Votre message</label>
         <textarea id="message" type="text" name="message" tabindex="0"></textarea>
       </div>
-      <button type="submit" class="contact_button" onclick="submit()" aria-hidden="true" tabindex="0" aria-label="Validate">Envoyer</button>
+      <button type="button" class="contact_button" onclick="submitForm(); closeModal();" aria-hidden="true" tabindex="0" aria-label="Validate">Envoyer</button>
     </form>
   </div>
     `
@@ -39,7 +39,7 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-function submit() {
+function submitForm() {
   let prenom = document.getElementById('prenom');
   let nom = document.getElementById('nom');
   let mail = document.getElementById('mail');
@@ -48,4 +48,8 @@ console.log(prenom.value);
 console.log(nom.value);
 console.log(mail.value);
 console.log(message.value);
+}
+
+function focusForm() {
+    const test = document.getElementById('prenom').focus();
 }

@@ -11,9 +11,9 @@ function photographerFactory(photographer) {
         <img src="${picture}" alt="${name}"></a>
         </a>
         <h2>${name}</h2>
-        <span arira-label="${country}, ${city}" tabindex="0">${country}, ${city}</span>
-        <p class="tag" aria-label="${tagline}" tabindex="0">${tagline}</p>
-        <p class="price" aria-label="${price}€" tabindex="0">${price} €/jour</p>
+        <span arira-label="country and city" tabindex="0">${country}, ${city}</span>
+        <p class="tag" aria-label="tagline" tabindex="0">${tagline}</p>
+        <p class="price" aria-label="price" tabindex="0">${price} €/jour</p>
         </article>
 
         `

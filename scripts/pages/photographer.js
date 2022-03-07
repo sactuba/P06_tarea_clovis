@@ -46,8 +46,7 @@ async function photographerData() {
 
 photographerData();
 
-
-
+//Bannniere du photographe de la page photographer.html
 function photographerBanner(photographer){
   const descHeader = document.querySelector('.descPhotographer');
   const headerImage = document.querySelector('.imagePhotographer');
@@ -58,7 +57,7 @@ function photographerBanner(photographer){
   headerImage.innerHTML = `<img src="${urlImage}" alt="${photographer.name}" tabindex="0"></img>`;
 }
 
-
+//Fonction d'incrementation du total de likes
 function calculateTotalLikes(media, photographer) {
   const bannerLikesAndPrice = document.querySelector('.bannerLikesAndPrice');
   let totalLikes = 0;
@@ -70,6 +69,8 @@ function calculateTotalLikes(media, photographer) {
   <span class="priceBanner" tabindex="0">${price}€/jour</span>`;
 }
 
+
+//Fonction pour afficher les photos et incrementer les likes par photo
 function displayCard(medias, template, photographer) {
   template.innerHTML = ` `;
   medias.forEach(media => {
@@ -94,7 +95,13 @@ function displayCard(medias, template, photographer) {
   })
 
 
+
+//Fonction pour les element de la lightbox
+
+
   let mediaIndex = 0;
+
+  //Fonction pour afficher la prochaine photos dans la lightbox
   document.querySelector('.fa-angle-left').addEventListener("click", function() {
     showNextMedia();
   }) 
@@ -107,10 +114,12 @@ function displayCard(medias, template, photographer) {
       const media = `assets/images/medias/${medias[mediaIndex].video ? medias[mediaIndex].video : medias[mediaIndex].image}`
       const title = medias[mediaIndex].title;  
       createPhotoLighhtbox(media, title);
-      console.log(mediaIndex);
     }
   }
   
+
+//Fonction pour afficher la precedente photos dans la lightbox
+
   document.querySelector('.fa-angle-right').addEventListener("click", function() {
     showPreviousMedia();
   }) 
@@ -123,11 +132,10 @@ function displayCard(medias, template, photographer) {
            const media = `assets/images/medias/${medias[mediaIndex].video ? medias[mediaIndex].video : medias[mediaIndex].image}`;
            const title = medias[mediaIndex].title;   
            createPhotoLighhtbox(media, title);
-           console.log(mediaIndex);
          }
   }
 
-  //const lightbox__modal = document.querySelector('.lightbox__modal');
+  //Fonction pour piloter la lightbox avec les fleches
   document.onkeydown = function(e) {
     e = e || window.event;
     if(e.keyCode == '37') { showPreviousMedia()}
@@ -137,17 +145,18 @@ function displayCard(medias, template, photographer) {
 }
 
 
-
+//Fonction pour ouvrir la lightbox
 function openModalPhoto(picture, title) {  
   document.querySelector('.lightbox__modal').style.display = "inline-grid";
   createPhotoLighhtbox(picture, title)
 } 
 
+//Fonction pour fermer la lightbox
 function closeModalPhoto() {
   document.querySelector('.lightbox__modal').style.display = "none";
 }
 
-
+//Fonction pour afficher les photos dans la lightbox
 function createPhotoLighhtbox(picture, title) {
 const template = document.querySelector('.lightbox__container');
 const extension = picture.split('.').pop();
@@ -172,6 +181,8 @@ const extension = picture.split('.').pop();
          return lightboxMedia;
 }
 } 
+
+//factory pour trier les card selon que se soit un photo ou une video
 class ImageFactory {
   static render(media){
     const template = photographerPhotoCard(media);
