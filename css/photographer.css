@@ -181,12 +181,6 @@ select {
   letter-spacing: 0em;
   text-align: left;
   color: #fff;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; /* Remove default arrow */
-  background-image: url("../assets/icons/angle-up-solid.svg"); /* Add custom arrow */
-  background-position: right;
-  background-repeat: no-repeat;
 }
 
 select:hover,

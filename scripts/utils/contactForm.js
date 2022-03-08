@@ -12,21 +12,21 @@ function displayModal() {
     <form methode="GET" action="#">
       <div>
         <label for="prenom" tabindex="0">Prénom</label>
-        <input id="prenom" type="text" name="prenom" tabindex="0"/>
+        <input id="prenom" type="text" name="prenom" tabindex="0" aria-label="Tapez votre prenom"/>
       </div>
       <div>
         <label for="nom" tabindex="0">Nom</label>
-        <input id="nom" type="text" name="nom" tabindex="0"/>
+        <input id="nom" type="text" name="nom" tabindex="0" aria-label="Tapez votre nom"/>
       </div>
       <div>
         <label for="mail" tabindex="0">Email</label>
-        <input id="mail" type="mail" name="mail" tabindex="0"/>
+        <input id="mail" type="mail" name="mail" tabindex="0" aria-label="Tapez votre mail"/>
       </div>
       <div>
         <label for="message" tabindex="0">Votre message</label>
-        <textarea id="message" type="text" name="message" tabindex="0"></textarea>
+        <textarea id="message" type="text" name="message" tabindex="0" aria-label="Tapez votre commentaire"></textarea>
       </div>
-      <button type="button" class="contact_button" onclick="submitForm(); closeModal();" aria-hidden="true" tabindex="0" aria-label="Validate">Envoyer</button>
+      <button type="button" class="contact_button" onclick="submitForm(); closeModal();" tabindex="0">Envoyer</button>
     </form>
   </div>
     `;
