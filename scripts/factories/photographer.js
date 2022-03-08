@@ -1,12 +1,9 @@
 //let index = 3;
 function photographerPhotoCard(media) {
-    const { title, image, id, likes } = media;
-    const picture = `assets/images/medias/${image}`;
-    function displayPhotoCard() {
-
-        const article =
-        
-       `<div>
+  const { title, image, id, likes } = media;
+  const picture = `assets/images/medias/${image}`;
+  function displayPhotoCard() {
+    const article = `<div>
        <article class="photoCard">
         <div class="imageCard">
         <img
@@ -28,22 +25,19 @@ function photographerPhotoCard(media) {
         </span> 
         </article>
         </div>
-        `
-        //console.log(article);
-        return (article);
-    }
-    return { title, image, id, likes, displayPhotoCard }
+        `;
+    //console.log(article);
+    return article;
+  }
+  return { title, image, id, likes, displayPhotoCard };
 }
 
-
 function photographerVideoCard(media) {
-    const { title,video, id, likes } = media;
-    const picture = `assets/images/medias/${video}`;
+  const { title, video, id, likes } = media;
+  const picture = `assets/images/medias/${video}`;
 
-    function displayVideoCard() {
-        const article =
-        
-       `<div>
+  function displayVideoCard() {
+    const article = `<div>
        <article class="photoCard">
         <div class="imageCard">
         <video
@@ -66,12 +60,8 @@ function photographerVideoCard(media) {
         </span>
         </article>
         </div>
-        `
-        return (article);
-    }
-    return { title, video, id, likes, displayVideoCard }
+        `;
+    return article;
+  }
+  return { title, video, id, likes, displayVideoCard };
 }
-
-
-
-
